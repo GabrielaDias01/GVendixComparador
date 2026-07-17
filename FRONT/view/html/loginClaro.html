@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login</title>
+
+    <link rel="stylesheet" href="../css/loginClaro.css">
+    <link rel="stylesheet" href="../css/mudarTema.css">
+    <link rel="stylesheet" href="../css/acessibilidade.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <script src="../js/mascaras.js" defer></script>
+    <script src="../../../BACK/validation/validacoes.js" defer></script>
+    <script src="../js/mudarTema.js" defer></script>
+    <script src="../js/acessibilidade.js" defer></script>
+</head>
+
+<body>
+    <section class="mudarTema">
+
+        <button id="btnConfig">
+            <i class="fa-solid fa-gear"></i>
+        </button>
+
+        <div id="menuTema">
+            <a href="./cadastroClaro.html">
+                <i class="fa-solid fa-sun"></i>
+                Tema Claro
+            </a>
+
+            <a href="./indexEscuro.html">
+                <i class="fa-solid fa-moon"></i>
+                Tema Escuro
+            </a>
+        </div>
+
+    </section>
+
+    <section class="acessibilidade">
+
+        <button id="btnAcessibilidade">
+            <i id="iconeAcess" class="fa-solid fa-universal-access"></i>
+        </button>
+
+        <div id="menuAcessibilidade">
+
+            <h3>Acessibilidade</h3>
+
+            <button id="btnLeitura">
+                <i class="fa-solid fa-volume-high"></i>
+                Leitura por voz
+            </button>
+
+            <button id="btnAumentar">
+                <i class="fa-solid fa-plus"></i>
+                Aumentar elementos
+            </button>
+
+            <button id="btnDiminuir">
+                <i class="fa-solid fa-minus"></i>
+                Diminuir elementos
+            </button>
+
+            <button id="btnSaturacao">
+                <i class="fa-solid fa-circle-half-stroke"></i>
+                Saturação
+            </button>
+
+        </div>
+
+    </section>
+
+    <main class="container">
+        <section class="logo">
+            <img src="../logoClara.png" alt="Logo da gvendix">
+        </section>
+
+        <section id="formulario">
+
+            <div class="botoes">
+                <a href="../html/loginClaro.html" class="btn entrar">Entrar</a>
+                <a href="../html/cadastroClaro.html" class="btn criarConta ativo">Criar conta</a>
+            </div>
+
+            <form>
+                <div class="input-box">
+                    <i class="fa-regular fa-envelope"></i>
+                    <input type="email" placeholder="seu@email.com">
+                </div>
+
+                <div class="input-box">
+                    <i class="fa-solid fa-lock"></i>
+                    <input type="password" placeholder="Digite sua senha">
+
+                </div>
+
+                <button id="btnLogar">
+                    Logar
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+
+            </form>
+
+        </section>
+
+    </main>
+
+</body>
+
+</html>
