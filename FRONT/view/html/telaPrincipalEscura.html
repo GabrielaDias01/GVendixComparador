@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tela do Comparador Escura</title>
+
+    <link rel="stylesheet" href="../css/telaPrincipalEscura.css">
+    <link rel="stylesheet" href="../css/mudarTemaTelaPrincipal.css">
+    <link rel="stylesheet" href="../css/acessibilidade.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon/remixicon.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css">
+
+    <script src="../js/mudarTema.js" defer></script>
+    <script src="../js/acessibilidade.js" defer></script>
+    <script src="../js/carrinho.js" defer></script>
+    <script src="../js/perfil.js" defer></script>
+</head>
+
+<body>
+
+    <header>
+
+        <section class="nav">
+
+            <section class="section">
+
+                <div class="iconedecompra">
+                    <img id="iconeDeCompra" src="../imagens/icon_limpo.png" width="40" height="40" alt="Ícone laranja">
+                </div>
+
+                <div class="logo">
+                    <img id="logoTransparente" src="../imagens/GVendix_transparente.png" width="185" height="110"
+                        alt="Logo GVendix">
+                </div>
+
+            </section>
+
+            <section class="section2">
+
+                <div class="divNav">
+
+                    <nav>
+
+                        <div class="pesquisaNav">
+
+                            <form class="pesquisa" id="formPesquisa">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+
+                                <input type="text" id="campoPesquisa" placeholder="Buscar comércio...">
+                            </form>
+
+                        </div>
+
+                        <ul class="menu-icons">
+
+                            <li class="carrinho">
+                                <a href="#" id="btnCarrinho" title="Carrinho">
+                                    <i class="ri-shopping-cart-line"></i>
+                                </a>
+                            </li>
+
+                            <li class="perfil">
+                                <a href="#" id="btnPerfil" title="Perfil">
+                                    <i class="fa-regular fa-circle-user"></i>
+                                </a>
+                            </li>
+
+                        </ul>
+
+                        <div id="overlayCarrinho"></div>
+
+                        <div id="carrinho">
+                            <header id="headerCarrinho">
+
+                                <div class="tituloCarrinho">
+                                    <i class="ri-shopping-cart-line" stile= #FF7A00></i>
+                                    <span>Meu Carrinho</span>
+                                </div>
+
+                                <button id="fecharCarrinho">
+                                    <i id="iconeheadercarrinho"class="fa-solid fa-xmark"></i>
+                                </button>
+
+                            </header>
+
+                        </div>
+
+                        <div id="overlayPerfil"></div>
+
+                        <div id="perfil">
+
+                            <header id="headerPerfil">
+
+                                <div class="tituloPerfil">
+                                    <i class="fa-solid fa-circle-user"></i>
+                                    <span>Meu Perfil</span>
+                                </div>
+
+                                <button id="fecharPerfil">
+                                    <i class="fa-solid fa-xmark"></i>
+                                </button>
+
+                            </header>
+
+                        </div>
+
+                        <!-- MANTIDO COM O MESMO HTML DO SEU CSS -->
+                        <section class="mudarTema">
+
+                            <button id="btnConfig">
+                                <i class="fa-solid fa-gear" style="color: #F4F5F7;"></i>
+                            </button>
+
+                            <div id="menuTema">
+
+                                <a href="./telaPrincipalClara.html">
+                                    <i class="fa-solid fa-sun"></i>
+                                    Tema Claro
+                                </a>
+
+                                <a href="./telaPrincipalEscura.html">
+                                    <i class="fa-solid fa-moon"></i>
+                                    Tema Escuro
+                                </a>
+
+                            </div>
+
+                        </section>
+
+                    </nav>
+
+                </div>
+
+            </section>
+
+        </section>
+
+    </header>
+
+    <main>
+
+        <div class="pesquisaMobile">
+            <form class="pesquisa">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="campoPesquisa" placeholder="Buscar comércio...">
+            </form>
+        </div>
+
+    </main>
+
+    <footer>
+
+
+
+    </footer>
+
+
+</body>
+
+</html>

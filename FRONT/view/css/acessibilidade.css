@@ -1,12 +1,13 @@
-/* ============================
-   ACESSIBILIDADE
-============================ */
-
 .acessibilidade {
-    position: fixed;
-    right: 25px;
-    bottom: 25px;
-    z-index: 999;
+    position: fixed !important;
+
+    right: 20px;
+    bottom: 20px;
+
+    z-index: 999999;
+
+    width: max-content;
+    height: max-content;
 }
 
 .formulario {
@@ -14,8 +15,6 @@
     z-index: 1;
 }
 
-
-/* Botão ♿ */
 
 #btnAcessibilidade {
     width: 55px;

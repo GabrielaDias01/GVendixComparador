@@ -1,0 +1,777 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Inter", sans-serif;
+}
+
+html {
+    overflow-x: hidden;
+}
+
+.nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+
+    background: black;
+
+    z-index: 1;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 0 20px;
+}
+
+body {
+    padding-top: 80px;
+}
+
+.section {
+    display: flex;
+    align-items: center;
+}
+
+.section2 {
+    display: flex;
+    align-items: center;
+}
+
+.divNav nav {
+    display: flex;
+    align-items: center;
+    gap: 35px;
+}
+
+.divNav ul {
+    display: flex;
+    list-style: none;
+    gap: 25px;
+}
+
+.divNav a {
+    color: white;
+    text-decoration: none;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    margin-left: -20px;
+}
+
+.iconedecompra {
+    display: flex;
+    align-items: center;
+}
+
+.logo #logoTransparente {
+    margin-top: 10px;
+}
+
+.menu-icons {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    gap: 15px;
+}
+
+.menu-icons a {
+    width: 40px;
+    height: 40px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    color: #F4F5F7;
+    text-decoration: none;
+    border-radius: 10px;
+
+    transition: .25s ease;
+}
+
+.menu-icons a:hover {
+    background: rgba(255,255,255,.08);
+    color:#FF7A00;
+}
+
+.menu-icons i {
+    font-size:30px;
+}
+
+
+.pesquisaNav {
+    display:block;
+}
+
+.pesquisaMobile {
+    display:none;
+}
+
+
+.pesquisa {
+    position:relative;
+}
+
+.pesquisa i {
+
+    position:absolute;
+
+    left:16px;
+
+    top:50%;
+
+    transform:translateY(-50%);
+
+
+    color:#7B7B7B;
+
+    font-size:15px;
+
+    pointer-events:none;
+}
+
+
+
+#campoPesquisa {
+
+    width:270px;
+
+    height:40px;
+
+
+    padding:0 16px 0 42px;
+
+
+    background:#1E1E1E;
+
+    border:1px solid #383838;
+
+    border-radius:10px;
+
+
+    box-shadow:0 2px 8px rgba(0,0,0,.08);
+
+
+    color:#F4F5F7;
+
+    font-size:15px;
+
+
+    outline:none;
+
+    transition:.25s;
+}
+
+
+#campoPesquisa::placeholder {
+    color:#7B7B7B;
+}
+
+
+#campoPesquisa:focus {
+
+    border-color:#FF7A00;
+
+    box-shadow:
+    0 0 0 3px rgba(255,122,0,.12);
+
+}
+
+
+.pesquisa:focus-within i {
+    color:#FF7A00;
+}
+
+
+
+/* OVERLAY */
+
+#overlayCarrinho,
+#overlayPerfil {
+
+    position:fixed;
+
+    top:0;
+    left:0;
+
+
+    width:100vw;
+    height:100vh;
+
+
+    background:rgba(0,0,0,.25);
+
+
+    backdrop-filter:blur(2px);
+
+    -webkit-backdrop-filter:blur(2px);
+
+
+    opacity:0;
+
+    visibility:hidden;
+
+
+    transition:.3s ease;
+
+
+    z-index:9998;
+}
+
+
+
+#overlayCarrinho.ativo,
+#overlayPerfil.ativo {
+
+    opacity:1;
+
+    visibility:visible;
+
+}
+
+
+
+/* CARRINHO */
+
+#carrinho,
+#perfil {
+
+    display:none;
+
+
+    position:fixed;
+
+
+    top:0;
+
+    right:0;
+
+
+    width:380px;
+
+    height:100vh;
+
+
+    background:#fff;
+
+
+    box-shadow:
+    -5px 0 20px rgba(0,0,0,.2);
+
+
+    transition:.3s ease;
+
+
+    z-index:99999;
+
+}
+
+
+
+#carrinho.ativo,
+#perfil.ativo {
+
+    display:block;
+
+}
+
+
+
+#carrinho #headerCarrinho,
+#perfil #headerPerfil {
+
+
+    background:black;
+
+
+    width:100%;
+
+
+    height:80px;
+
+}
+
+/* =========================
+   HEADER DO PERFIL E CARRINHO
+========================= */
+
+#headerCarrinho,
+#headerPerfil {
+
+    width: 100%;
+    height: 80px;
+
+    background: black;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 25px;
+
+}
+
+
+
+.tituloCarrinho,
+.tituloPerfil {
+
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    font-size: 20px;
+    font-weight: 600;
+
+    color: #F4F5F7;
+
+}
+
+
+.tituloCarrinho i,
+.tituloPerfil i{
+
+    color: #FF7A00;
+
+    font-size: 28px;
+
+}
+
+#fecharCarrinho,
+#fecharPerfil {
+
+    width: 38px;
+    height: 38px;
+
+    border: none;
+
+    background: transparent;
+
+    cursor: pointer;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 50%;
+
+    transition: .25s ease;
+
+}
+
+
+#fecharCarrinho i,
+#fecharPerfil i {
+
+    font-size: 24px;
+
+    color: #F4F5F7;
+
+}
+
+
+#fecharCarrinho:hover,
+#fecharPerfil:hover {
+
+    background: rgba(255,255,255,.12);
+
+}
+
+#carrinho,
+#perfil {
+
+    background: white;
+
+    box-shadow:
+    -5px 0 20px rgba(0,0,0,.5);
+
+}
+
+#carrinho,
+#perfil {
+
+    color: #F4F5F7;
+
+}
+
+@media (max-width:768px) {
+
+
+    .nav {
+
+        height:80px;
+
+        padding:0 16px;
+
+    }
+
+
+    .divNav nav {
+
+        display:flex;
+
+        align-items:center;
+
+        gap:20px;
+
+    }
+
+
+    #iconeDeCompra {
+
+        width:38px;
+
+        height:38px;
+
+    }
+
+
+    #logoTransparente {
+
+        width:170px;
+
+        height:auto;
+
+    }
+
+
+
+    .pesquisaNav {
+
+        display:block;
+
+    }
+
+
+    .pesquisaMobile {
+
+        display:none;
+
+    }
+
+
+
+    .pesquisa {
+
+        flex:1;
+
+        min-width:0;
+
+    }
+
+
+
+    #campoPesquisa {
+
+        width:100%;
+
+        max-width:260px;
+
+        height:42px;
+
+        font-size:15px;
+
+    }
+
+
+
+    .menu-icons {
+
+        gap:5px;
+
+    }
+
+
+
+    .menu-icons a {
+
+        width:42px;
+
+        height:42px;
+
+    }
+
+
+
+    .menu-icons i {
+
+        font-size:28px;
+
+    }
+
+
+
+    #carrinho.ativo,
+    #perfil.ativo {
+
+        width:75%;
+
+    }
+
+}
+
+
+
+
+
+@media (max-width:480px) {
+
+
+
+    .nav {
+
+        height:80px;
+
+        padding:0 12px;
+
+    }
+
+
+
+    #iconeDeCompra {
+
+        width:34px;
+
+        height:34px;
+
+    }
+
+
+
+    #logoTransparente {
+
+        width:130px;
+
+        height:100px;
+
+    }
+
+
+
+    .logo {
+
+        margin-left:-8px;
+
+    }
+
+
+
+    .divNav nav {
+
+        display:flex;
+
+        align-items:center;
+
+        gap:12px;
+
+    }
+
+
+
+
+    /* pesquisa vai para a main */
+
+
+    .pesquisaNav {
+
+        display:none;
+
+    }
+
+
+
+    .pesquisaMobile {
+
+        display:block;
+
+        width:100%;
+
+        padding:20px 12px;
+
+    }
+
+
+
+    .pesquisaMobile .pesquisa {
+
+        width:100%;
+
+    }
+
+
+
+    .pesquisaMobile #campoPesquisa {
+
+        width:100%;
+
+        max-width:none;
+
+        height:45px;
+
+    }
+
+
+
+    .pesquisaMobile .pesquisa i {
+
+        left:16px;
+
+    }
+
+
+
+
+    .menu-icons {
+
+        gap:2px;
+
+    }
+
+
+
+    .menu-icons a {
+
+        width:32px;
+
+        height:32px;
+
+    }
+
+
+
+    .menu-icons i {
+
+        font-size:28px;
+
+    }
+
+
+
+
+    #carrinho.ativo,
+    #perfil.ativo {
+
+        width:75%;
+
+    }
+
+}
+
+
+
+
+
+@media (max-width:360px) {
+
+
+
+    .nav {
+
+        padding:0 10px;
+
+    }
+
+
+
+    #iconeDeCompra {
+
+        width:30px;
+
+        height:30px;
+
+    }
+
+
+
+    #logoTransparente {
+
+        width:95px;
+
+        height:auto;
+
+    }
+
+
+
+    .divNav nav {
+
+        gap:8px;
+
+    }
+
+
+
+
+    .pesquisaMobile {
+
+        padding:15px 10px;
+
+    }
+
+
+
+
+    .pesquisaMobile #campoPesquisa {
+
+        height:40px;
+
+        font-size:14px;
+
+    }
+
+
+
+
+    .pesquisaMobile .pesquisa i {
+
+        font-size:14px;
+
+    }
+
+
+
+
+
+    .menu-icons {
+
+        gap:1px;
+
+    }
+
+
+
+
+    .menu-icons a {
+
+        width:38px;
+
+        height:38px;
+
+    }
+
+
+
+
+    .menu-icons i {
+
+        font-size:26px;
+
+    }
+
+
+
+
+    #carrinho.ativo,
+    #perfil.ativo {
+
+        width:75%;
+
+    }
+
+}
