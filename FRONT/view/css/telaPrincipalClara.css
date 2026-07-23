@@ -15,21 +15,17 @@ html {
     left: 0;
     width: 100%;
     height: 80px;
-
     background: #DDE2E8;
-
     z-index: 1;
-
     display: flex;
     justify-content: space-between;
     align-items: center;
-
     padding: 0 20px;
 }
 
 body {
     padding-top: 80px;
-    background-color: #F4F5F7;
+    background: #F4F5F7;
 }
 
 .section {
@@ -55,7 +51,7 @@ body {
 }
 
 .divNav a {
-    color: white;
+    color: #000;
     text-decoration: none;
 }
 
@@ -84,27 +80,23 @@ body {
 .menu-icons a {
     width: 40px;
     height: 40px;
-
     display: flex;
     justify-content: center;
     align-items: center;
-
     color: #000;
     text-decoration: none;
     border-radius: 10px;
-
     transition: .25s ease;
 }
 
 .menu-icons a:hover {
-    background: rgba(255,255,255,.08);
+    background: rgba(0, 0, 0, .08);
     color: #FF7A00;
 }
 
 .menu-icons i {
     font-size: 30px;
 }
-
 
 .pesquisaNav {
     display: block;
@@ -114,178 +106,109 @@ body {
     display: none;
 }
 
-
 .pesquisa {
     position: relative;
 }
 
 .pesquisa i {
+
     position: absolute;
     left: 16px;
     top: 50%;
     transform: translateY(-50%);
-
     color: #7B7B7B;
     font-size: 15px;
-
     pointer-events: none;
 }
-
 
 #campoPesquisa {
 
     width: 270px;
     height: 40px;
-
     padding: 0 16px 0 42px;
-
     background: #FFFFFF;
-
     border: 1px solid #DDE2E8;
-
     border-radius: 10px;
-
-    box-shadow: 0 2px 8px rgba(0,0,0,.08);
-
-    color: black;
-
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .08);
+    color: #000;
     font-size: 15px;
-
     outline: none;
-
     transition: .25s;
 }
-
 
 #campoPesquisa::placeholder {
     color: #7B7B7B;
 }
 
-
 #campoPesquisa:focus {
 
     border-color: #FF7A00;
-
-    box-shadow: 
-    0 0 0 3px rgba(255,122,0,.12);
-
+    box-shadow:
+        0 0 0 3px rgba(255, 122, 0, .12);
 }
-
 
 .pesquisa:focus-within i {
-    color:#FF7A00;
+    color: #FF7A00;
 }
-
-
-
-/* OVERLAY */
 
 #overlayCarrinho,
 #overlayPerfil {
 
-    position:fixed;
-
-    top:0;
-    left:0;
-
-
-    width:100vw;
-    height:100vh;
-
-
-    background:rgba(0,0,0,.25);
-
-
-    backdrop-filter:blur(2px);
-
-    -webkit-backdrop-filter:blur(2px);
-
-
-    opacity:0;
-
-    visibility:hidden;
-
-
-    transition:.3s ease;
-
-
-    z-index:9998;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, .25);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    opacity: 0;
+    visibility: hidden;
+    transition: .3s ease;
+    z-index: 9998;
 }
-
-
 
 #overlayCarrinho.ativo,
 #overlayPerfil.ativo {
 
-    opacity:1;
-
-    visibility:visible;
-
+    opacity: 1;
+    visibility: visible;
 }
-
-
-
-/* CARRINHO */
 
 #carrinho,
 #perfil {
 
-    display:none;
-
-
-    position:fixed;
-
-
-    top:0;
-
-    right:0;
-
-
-    width:380px;
-
-    height:100vh;
-
-
-    background:#ECEFF3;
-
-
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 480px;
+    height: 100vh;
+    background: #ECEFF3;
     box-shadow:
-    -5px 0 20px rgba(0,0,0,.2);
-
-
-    transition:.3s ease;
-
-
-    z-index:99999;
-
+        -5px 0 20px rgba(0, 0, 0, .2);
+    transition: .3s ease;
+    z-index: 99999;
 }
-
-
 
 #carrinho.ativo,
 #perfil.ativo {
 
-    display:block;
-
+    display: block;
 }
 
+#dadosConta.ativo {
+    display: block;
+}
 
 
 #carrinho #headerCarrinho,
 #perfil #headerPerfil {
 
-
-    background:#DDE2E8;
-
-
-    width:100%;
-
-
-    height:80px;
-
+    background: #DDE2E8;
+    width: 100%;
+    height: 80px;
 }
-
-
 
 /* =========================
    HEADER DO PERFIL E CARRINHO
@@ -294,726 +217,924 @@ body {
 #headerCarrinho,
 #headerPerfil {
 
-    width:100%;
-
-    height:80px;
-
-    background:#DDE2E8;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
-
-    padding:0 25px;
-
+    width: 100%;
+    height: 80px;
+    background: #DDE2E8;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 25px;
 }
-
-
 
 .tituloCarrinho,
 .tituloPerfil {
 
-    display:flex;
-
-    align-items:center;
-
-    gap:12px;
-
-    font-size:20px;
-
-    font-weight:600;
-
-    color:#000;
-
-}
-
-
-
-.tituloCarrinho i,
-.tituloPerfil i {
-
-    color:#FF7A00;
-
-    font-size:28px;
-
-}
-
-
-
-#fecharCarrinho,
-#fecharPerfil {
-
-    width:38px;
-
-    height:38px;
-
-    border:none;
-
-    background:transparent;
-
-    cursor:pointer;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    border-radius:50%;
-
-    transition:.25s ease;
-
-}
-
-
-
-#fecharCarrinho i,
-#fecharPerfil i {
-
-    font-size:24px;
-
-    color:#000;
-
-}
-
-
-
-#fecharCarrinho:hover,
-#fecharPerfil:hover {
-
-    background:rgba(0,0,0,.08);
-
-}
-
-
-
-#headerPerfil {
-    width: 100%;
-    height: 80px;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    padding: 0 20px;
-}
-
-.infoPerfil {
     display: flex;
     align-items: center;
     gap: 12px;
-}
-
-.infoPerfil > i {
-    font-size: 28px;
-    color: #FF7A00;
-}
-
-.dadosPerfil {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-}
-
-.nomePerfil {
     font-size: 20px;
     font-weight: 600;
     color: #000;
 }
 
-#emailPerfil {
-    margin-left: 0;
-    font-size: 13px;
+.tituloCarrinho i,
+.tituloPerfil i {
+
+    color: #FF7A00;
+    font-size: 28px;
+}
+
+#fecharCarrinho,
+#fecharPerfil {
+
+    width: 38px;
+    height: 38px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    transition: .25s ease;
+}
+
+#fecharCarrinho i,
+#fecharPerfil i {
+
+    font-size: 24px;
+    color: #000;
+}
+
+#fecharCarrinho:hover,
+#fecharPerfil:hover {
+
+    background: rgba(0, 0, 0, .12);
+}
+
+#carrinho,
+#perfil {
+
+    color: #000;
+}
+
+#headerPerfil {
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+
+.infoPerfil {
+
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.infoPerfil>i {
+
+    font-size: 30px;
+    color: #FF7A00;
+}
+
+.nomePerfil {
+
+    font-size: 20px;
+    font-weight: 600;
     color: #000;
 }
 
 .mainPerfil {
+
     padding: 15px;
+    background: #ECEFF3;
+    height: calc(100vh - 80px);
+    overflow-y: auto;
 }
 
-.mainPerfil h4 {
-    font-size: 12px;
-    letter-spacing: 2px;
-    color: #7a7a7a;
-    margin-bottom: 15px;
-}
+.avatarUsuario {
 
-.cardComercio {
+    width: 60px;
+    height: 60px;
+    border-radius: 18px;
+    background: #FF7A00;
+    color: white;
     display: flex;
     align-items: center;
-    gap: 12px;
-
-    padding: 10px;
-    border: 1px solid #d8d8d8;
-    border-radius: 15px;
-    background: #fff;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: 700;
+    flex-shrink: 0;
 }
 
-.cardComercio img {
-    width: 50px;
-    height: 50px;
-    object-fit: cover;
-    border-radius: 10px;
-}
+.infoUsuario {
 
-.infoComercio {
     flex: 1;
 }
 
-.infoComercio h3 {
-    font-size: 16px;
+.infoUsuario h3 {
+
+    color: #111;
+    font-size: 17px;
+    margin-bottom: 3px;
+}
+
+.infoUsuario p {
+
+    color: #666;
+    font-size: 13px;
+    margin-bottom: 5px;
+}
+
+.statusConta {
+
+    color: #FF7A00;
+    font-size: 12px;
+}
+
+.btnPerfilDetalhes {
+
+    width: 36px;
+    height: 36px;
+    background: #F4F5F7;
+    border: 1px solid #DDE2E8;
+    border-radius: 10px;
+    color: #111;
+    cursor: pointer;
+}
+
+/* RESUMO */
+
+.resumoConta {
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 16px;
+}
+
+.cardResumo {
+
+    background: #FFFFFF;
+    border: 1px solid #E5E5E5;
+    border-radius: 14px;
+    padding: 16px 8px;
+    text-align: center;
+}
+
+.cardResumo strong {
+
+    display: block;
+    color: #FF7A00;
+    font-size: 22px;
     margin-bottom: 4px;
 }
 
-.infoComercio p {
-    font-size: 14px;
-    color: #666;
+.cardResumo span {
+    color: #555;
+    font-size: 12px;
 }
 
-.favorito {
-    color: #FF7A00;
-    font-size: 20px;
-}
+/* MENU */
 
-.mainPerfil hr {
-    margin: 18px 0;
-    border: none;
-    border-top: 1px solid #d7d7d7;
-}
-
-.contaPerfil ul {
-    list-style: none;
+.menuPerfil {
 
     display: flex;
     flex-direction: column;
-
-    gap: 1px;
+    gap: 8px;
 }
 
-.contaPerfil li {
+.itemPerfil {
+
+    background: #FFFFFF;
+    border: 1px solid #E8E8E8;
+    border-radius: 14px;
+    padding: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #000;
+    cursor: pointer;
+    transition: .25s;
+}
+
+.itemPerfil:hover {
+
+    border-color: #FF7A00;
+}
+
+.itemPerfil span {
+
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.itemPerfil i {
+
+    color: #888;
+}
+
+/* SAIR */
+
+.btnSairConta {
+
     width: 100%;
+    margin-top: 18px;
+    padding: 16px;
+    border: 1px solid #ff6c6c;
+    border-radius: 14px;
+    background: transparent;
+    color: #ff3d3d;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.carrinhoVazio {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 70px;
+    padding-inline: 25px;
+    text-align: center;
+}
+
+.iconeCarrinhoVazio {
+
+    width: 64px;
+    height: 64px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #F5F5F5;
+    border: 1px solid #E8E8E8;
+    border-radius: 18px;
+    font-size: 30px;
+    color: #FF7A00;
+    margin-bottom: 20px;
+}
+
+.carrinhoVazio h2 {
+
+    font-size: 22px;
+    font-weight: 600;
+    color: #111;
+    margin-bottom: 8px;
+}
+
+.carrinhoVazio p {
+
+    font-size: 14px;
+    color: #8A8A8A;
+    line-height: 1.5;
+    max-width: 300px;
+}
+
+.comerciosProximos {
+
+    padding: 20px;
+}
+
+.comerciosProximos h1 {
+
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 15px;
+    color: #1E1E1E;
+}
+
+.localizacao {
+
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #666;
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.localizacao i {
+
+    color: #FF7A00;
+}
+
+.resumoComercios {
 
     display: flex;
     justify-content: space-between;
     align-items: center;
-
-    padding: 10px 0;
-
-    cursor: pointer;
+    margin-bottom: 25px;
 }
 
-.contaPerfil li span {
-    font-size: 16px;
-    color: #000;
-    font-weight: 500;
-}
+.resumoComercios span {
 
-.contaPerfil li i {
-    color: #8A8A8A;
-    font-size: 14px;
-}
-
-/* =========================
-   CARRINHO VAZIO
-========================= */
-
-.carrinhoVazio {
-
-    display:flex;
-
-    flex-direction:column;
-
-    align-items:center;
-
-    padding-top:70px;
-
-    padding-inline:25px;
-
-    text-align:center;
-
-}
-
-
-
-.iconeCarrinhoVazio {
-
-    width:64px;
-
-    height:64px;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    background:#F5F5F5;
-
-    border:1px solid #E8E8E8;
-
-    border-radius:18px;
-
-    font-size:30px;
-
-    color:#FF7A00;
-
-    margin-bottom:20px;
-
-}
-
-
-
-.carrinhoVazio h2 {
-
-    font-size:22px;
-
-    font-weight:600;
-
-    color:#111;
-
-    margin-bottom:8px;
-
-}
-
-
-
-.carrinhoVazio p {
-
-    font-size:14px;
-
-    color:#8A8A8A;
-
-    line-height:1.5;
-
-    max-width:300px;
-
-}
-
-.comerciosProximos{
-    padding:20px;
-}
-
-.comerciosProximos h1{
-    font-size:36px;
-    font-weight:700;
-    line-height:1.1;
-    margin-bottom:15px;
-}
-
-.localizacao{
-    display:flex;
-    align-items:center;
-    gap:8px;
-
-    color:#666;
-    font-size:18px;
-
-    margin-bottom:20px;
-}
-
-.localizacao i{
-    color:#FF7A00;
-}
-
-.resumoComercios{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-
-    margin-bottom:25px;
-}
-
-.resumoComercios span{
-    font-size:18px;
+    font-size: 18px;
     color: #666666;
 }
 
-.precoAoVivo{
-    display:flex;
-    align-items:center;
-    gap:6px;
+.precoAoVivo {
 
-    color:#8a8a8a;
-    font-size:14px;
-    text-transform:uppercase;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #8a8a8a;
+    font-size: 14px;
+    text-transform: uppercase;
 }
 
-.bolinha{
-    width:8px;
-    height:8px;
-    border-radius:50%;
-    background:#FF7A00;
+.bolinha {
+
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #FF7A00;
 }
 
-.semComercios{
-    width:100%;
+.semComercios {
 
-    background:#DDE2E8;
-
-    border:1px solid #DDE2E8;
-    border-radius:18px;
-
-    padding:50px 25px;
-
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    text-align:center;
+    width: 100%;
+    background: #DDE2E8;
+    border: 1px solid #DDE2E8;
+    border-radius: 18px;
+    padding: 50px 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
 }
 
-.semComercios i{
-    font-size:45px;
-    color:#FF7A00;
+.semComercios i {
 
-    margin-bottom:20px;
+    font-size: 45px;
+    color: #FF7A00;
+    margin-bottom: 20px;
 }
 
-.semComercios h3{
-    font-size:22px;
-    margin-bottom:10px;
+.semComercios h3 {
+
+    font-size: 22px;
+    margin-bottom: 10px;
+    color: #111;
 }
 
-.semComercios p{
-    color:#777;
-    max-width:350px;
-    line-height:1.5;
+.semComercios p {
+
+    color: #777;
+    max-width: 350px;
+    line-height: 1.5;
 }
 
-@media (max-width: 768px) {
+.cardUsuario {
 
+    background: #FFFFFF;
+    border: 1px solid #DDE2E8;
+    border-radius: 18px;
+    padding: 18px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.btnSair {
+
+    width: 100%;
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 14px;
+    border: 1px solid #ff6b6b;
+    background: transparent;
+    color: #ff3b3b;
+    cursor: pointer;
+}
+
+/* DADOS DA CONTA */
+
+#dadosConta {
+
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 480px;
+    height: 100vh;
+    background: #ECEFF3;
+    z-index: 100000;
+}
+
+/* HEADER */
+
+#headerDadosConta {
+
+    height: 80px;
+    background: #DDE2E8;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    color: #111;
+}
+
+#headerDadosConta span {
+
+    flex: 1;
+    margin-left: 15px;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+#voltarPerfil,
+#fecharDadosConta {
+
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 12px;
+    background: #FFFFFF;
+    border: 1px solid #DDE2E8;
+    color: #111;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: .25s;
+}
+
+#voltarPerfil:hover,
+#fecharDadosConta:hover {
+
+    background: #F4F5F7;
+}
+
+.mainDadosConta {
+
+    padding: 12px;
+    height: calc(100vh - 80px);
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    scrollbar-width: thin;
+}
+
+/* CARD PERFIL */
+
+.cardPerfilConta {
+
+    background: #FFFFFF;
+    border: 1px solid #DDE2E8;
+    border-radius: 18px;
+    padding: 18px;
+    text-align: center;
+}
+
+.cardPerfilConta h2 {
+
+    color: #111;
+    margin-top: 12px;
+    font-size: 16px;
+}
+
+.cardPerfilConta p {
+
+    color: #666;
+    margin-top: 4px;
+}
+
+.avatarContainer {
+
+    position: relative;
+    width: 80px;
+    margin: auto;
+}
+
+.avatar {
+
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: #DDE2E8;
+    color: #111;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.btnFoto {
+
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 24px;
+    height: 24px;
+    border: none;
+    border-radius: 50%;
+    background: #FF7A00;
+    color: white;
+    cursor: pointer;
+}
+
+/* INFORMAÇÕES */
+
+.cardInformacoes {
+
+    background: #FFFFFF;
+    border: 1px solid #DDE2E8;
+    border-radius: 18px;
+}
+
+.linhaInfo {
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 16px;
+}
+
+.linhaInfo:not(:last-child) {
+
+    border-bottom: 1px solid #E5E5E5;
+}
+
+.linhaInfo span {
+
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: #8E8E8E;
+}
+
+.linhaInfo strong {
+
+    color: #111;
+    text-align: right;
+    font-size: 14px;
+}
+
+/* BOTÕES */
+
+.botaoConta {
+
+    height: 44px;
+    border-radius: 14px;
+    border: 1px solid #DDE2E8;
+    background: #FFFFFF;
+    color: #111;
+    cursor: pointer;
+    transition: .25s;
+}
+
+.botaoConta:hover {
+
+    border-color: #FF7A00;
+}
+
+.botaoContaExcluir {
+
+    height: 44px;
+    border-radius: 14px;
+    border: 1px solid #ff4d4d;
+    background: transparent;
+    color: #ff4d4d;
+    cursor: pointer;
+    transition: .25s;
+}
+
+.botaoContaExcluir:hover {
+
+    background: rgba(255, 77, 77, .08);
+}
+
+/* RESPONSIVIDADE */
+
+@media (max-width:768px) {
     .nav {
-
-        height:80px;
-
-        padding:0 16px;
-
+        height: 80px;
+        padding: 0 16px;
     }
-
 
     .divNav nav {
-
-        display:flex;
-
-        align-items:center;
-
-        gap:20px;
-
+        display: flex;
+        align-items: center;
+        gap: 20px;
     }
-
 
     #iconeDeCompra {
-
-        width:38px;
-
-        height:38px;
-
+        width: 38px;
+        height: 38px;
     }
-
 
     #logoTransparente {
-
-        width:170px;
-
-        height:auto;
-
+        width: 170px;
+        height: auto;
     }
-
 
     .pesquisaNav {
-
-        display:block;
-
+        display: block;
     }
-
 
     .pesquisaMobile {
-
-        display:none;
-
+        display: none;
     }
-
 
     .pesquisa {
-
-        flex:1;
-
-        min-width:0;
-
+        flex: 1;
+        min-width: 0;
     }
-
 
     #campoPesquisa {
-
-        width:100%;
-
-        max-width:260px;
-
-        height:42px;
-
-        font-size:15px;
-
+        width: 100%;
+        max-width: 260px;
+        height: 42px;
+        font-size: 15px;
     }
-
 
     .menu-icons {
-
-        gap:5px;
-
+        gap: 5px;
     }
-
 
     .menu-icons a {
-
-        width:42px;
-
-        height:42px;
-
+        width: 42px;
+        height: 42px;
     }
-
 
     .menu-icons i {
-
-        font-size:28px;
-
+        font-size: 28px;
     }
 
-
     #carrinho.ativo,
-    #perfil.ativo {
+    #perfil.ativo,
+    #dadosConta {
+        width: 75%;
+    }
 
-        width:75%;
+    .comerciosProximos {
+        padding: 25px 18px;
+    }
 
+    .comerciosProximos h1 {
+        font-size: 30px;
+    }
+
+    .localizacao {
+        font-size: 16px;
+    }
+
+    .resumoComercios {
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+
+    .resumoComercios span {
+        font-size: 16px;
+    }
+
+    .semComercios {
+        padding: 40px 20px;
+    }
+
+    .semComercios i {
+        font-size: 38px;
+    }
+
+    .semComercios h3 {
+        font-size: 20px;
+    }
+
+    .semComercios p {
+        font-size: 15px;
     }
 
 }
-
-
-
-
 
 @media (max-width:480px) {
-
-
     .nav {
-
-        height:80px;
-
-        padding:0 12px;
-
+        height: 80px;
+        padding: 0 12px;
     }
-
 
     #iconeDeCompra {
-
-        width:34px;
-
-        height:34px;
-
+        width: 34px;
+        height: 34px;
     }
-
 
     #logoTransparente {
-
-        width:130px;
-
-        height:100px;
-
+        width: 130px;
+        height: 100px;
     }
-
 
     .logo {
-
-        margin-left:-8px;
-
+        margin-left: -8px;
     }
-
 
     .divNav nav {
-
-        display:flex;
-
-        align-items:center;
-
-        gap:12px;
-
+        display: flex;
+        align-items: center;
+        gap: 12px;
     }
-
-
-
-    /* pesquisa vai para a main */
 
     .pesquisaNav {
-
-        display:none;
-
+        display: none;
     }
-
 
     .pesquisaMobile {
-
-        display:block;
-
-        width:100%;
-
-        padding:20px 12px;
-
+        display: block;
+        width: 100%;
+        padding: 20px 12px;
     }
-
 
     .pesquisaMobile .pesquisa {
-
-        width:100%;
-
+        width: 100%;
     }
-
 
     .pesquisaMobile #campoPesquisa {
-
-        width:100%;
-
-        max-width:none;
-
-        height:45px;
-
+        width: 100%;
+        max-width: none;
+        height: 45px;
     }
-
 
     .pesquisaMobile .pesquisa i {
-
-        left:16px;
-
+        left: 16px;
     }
-
-
 
     .menu-icons {
-
-        gap:2px;
-
+        gap: 2px;
     }
-
 
     .menu-icons a {
-
-        width:32px;
-
-        height:32px;
-
+        width: 32px;
+        height: 32px;
     }
-
 
     .menu-icons i {
-
-        font-size:28px;
-
+        font-size: 28px;
     }
-
 
     #carrinho.ativo,
-    #perfil.ativo {
-
-        width:75%;
-
+    #perfil.ativo,
+    #dadosConta {
+        width: 75%;
     }
 
+    .comerciosProximos {
+        padding: 20px 15px;
+    }
+
+    .comerciosProximos h1 {
+        font-size: 20px;
+        line-height: 1.2;
+        max-width: 400px;
+    }
+
+    .localizacao {
+        font-size: 15px;
+        margin-bottom: 18px;
+    }
+
+    .resumoComercios {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 20px;
+    }
+
+    .resumoComercios span,
+    .precoAoVivo {
+        white-space: nowrap;
+    }
+
+    .precoAoVivo {
+        font-size: 13px;
+    }
+
+    .semComercios {
+        padding: 35px 18px;
+        border-radius: 16px;
+    }
+
+    .semComercios i {
+        font-size: 34px;
+    }
+
+    .semComercios h3 {
+        font-size: 18px;
+    }
+
+    .semComercios p {
+        font-size: 14px;
+        max-width: 100%;
+    }
+
+    #dadosConta {
+        width: 100%;
+    }
+
+    .cardPerfilConta h2 {
+        font-size: 15px;
+    }
+
+    .cardPerfilConta p {
+        font-size: 13px;
+    }
+
+    .linhaInfo span {
+        font-size: 10px;
+    }
+
+    .linhaInfo strong {
+        font-size: 13px;
+    }
 }
 
-
-
-
-
-
-
 @media (max-width:360px) {
-
-
     .nav {
-
-        padding:0 10px;
-
+        padding: 0 10px;
     }
-
 
     #iconeDeCompra {
-
-        width:30px;
-
-        height:30px;
-
+        width: 30px;
+        height: 30px;
     }
-
 
     #logoTransparente {
-
-        width:95px;
-
-        height:auto;
-
+        width: 95px;
+        height: auto;
     }
-
 
     .divNav nav {
-
-        gap:8px;
-
+        gap: 8px;
     }
-
-
 
     .pesquisaMobile {
-
-        padding:15px 10px;
-
+        padding: 15px 10px;
     }
-
 
     .pesquisaMobile #campoPesquisa {
-
-        height:40px;
-
-        font-size:14px;
-
+        height: 40px;
+        font-size: 14px;
     }
-
 
     .pesquisaMobile .pesquisa i {
-
-        font-size:14px;
-
+        font-size: 14px;
     }
-
-
 
     .menu-icons {
-
-        gap:1px;
-
+        gap: 1px;
     }
-
 
     .menu-icons a {
-
-        width:38px;
-
-        height:38px;
-
+        width: 38px;
+        height: 38px;
     }
-
 
     .menu-icons i {
-
-        font-size:26px;
-
+        font-size: 26px;
     }
 
-
     #carrinho.ativo,
-    #perfil.ativo {
+    #perfil.ativo,
+    #dadosConta {
+        width: 75%;
+    }
 
-        width:75%;
+    .comerciosProximos {
+        padding: 18px 12px;
+    }
 
+    .comerciosProximos h1 {
+        font-size: 22px;
+    }
+
+    .localizacao {
+        font-size: 14px;
+    }
+
+    .resumoComercios span {
+        font-size: 14px;
+    }
+
+    .precoAoVivo {
+        font-size: 12px;
+    }
+
+    .semComercios {
+        padding: 30px 15px;
+    }
+
+    .semComercios i {
+        font-size: 30px;
+    }
+
+    .semComercios h3 {
+        font-size: 17px;
+    }
+
+    .semComercios p {
+        font-size: 13px;
     }
 
 }
