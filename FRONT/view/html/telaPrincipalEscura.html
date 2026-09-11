@@ -5,378 +5,258 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tela do Comparador Escura</title>
-
     <link rel="stylesheet" href="../css/telaPrincipalEscura.css">
     <link rel="stylesheet" href="../css/mudarTemaTelaPrincipal.css">
     <link rel="stylesheet" href="../css/acessibilidade.css">
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon/remixicon.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css">
 
-
     <script src="../js/mudarTema.js" defer></script>
     <script src="../js/acessibilidade.js" defer></script>
     <script src="../js/carrinho.js" defer></script>
-    <script src="../js/perfil.js" defer></script>
+    <script src="../../controller_view/perfil.js" defer></script>
+    <script src="../js/perfilFront.js" defer></script>
+    <script src="../../controller_view/excluir.js" defer></script>
+    <script src="../../controller_view/atualizar.js" defer></script>
+    <script src="../../controller_view/excluir.js" defer></script>
 </head>
 
 <body>
-
     <header>
-
         <section class="nav">
-
             <section class="section">
-
                 <div class="iconedecompra">
                     <img id="iconeDeCompra" src="../imagens/icon_limpo.png" width="40" height="40" alt="Ícone laranja">
                 </div>
-
                 <div class="logo">
                     <img id="logoTransparente" src="../imagens/GVendix_transparente.png" width="185" height="110"
                         alt="Logo GVendix">
                 </div>
-
             </section>
-
             <section class="section2">
-
                 <div class="divNav">
-
                     <nav>
-
                         <div class="pesquisaNav">
-
                             <form class="pesquisa" id="formPesquisa">
                                 <i class="fa-solid fa-magnifying-glass"></i>
-
                                 <input type="text" id="campoPesquisa" placeholder="Buscar comércio...">
                             </form>
-
                         </div>
-
                         <ul class="menu-icons">
-
                             <li class="carrinho">
                                 <a href="#" id="btnCarrinho" title="Carrinho">
                                     <i class="ri-shopping-cart-line"></i>
                                 </a>
-
                             </li>
-
                             <li class="perfil">
                                 <a href="#" id="btnPerfil" title="Perfil">
                                     <i class="fa-regular fa-circle-user"></i>
                                 </a>
                             </li>
-
                         </ul>
-
 
                         <!-- MANTIDO COM O MESMO HTML DO SEU CSS -->
                         <section class="mudarTema">
-
-                            <button id="btnConfig" style="color: white">
-                                <i class="fa-solid fa-gear"></i>
+                            <button id="btnConfig">
+                                <i class="fa-solid fa-gear" style="color: #fff;"></i>
                             </button>
-
                             <div id="menuTema">
-
                                 <a href="./telaPrincipalClara.html">
                                     <i class="fa-solid fa-sun"></i>
                                     Tema Claro
                                 </a>
-
                                 <a href="./telaPrincipalEscura.html">
                                     <i class="fa-solid fa-moon"></i>
                                     Tema Escuro
                                 </a>
-
                             </div>
-
                         </section>
-
                     </nav>
                     <div id="overlayCarrinho"></div>
-
                     <div id="carrinho">
-
                         <header id="headerCarrinho">
-
                             <div class="tituloCarrinho">
                                 <i class="ri-shopping-cart-line"></i>
                                 <span>Meu Carrinho</span>
                             </div>
-
                             <button id="fecharCarrinho">
                                 <i class="fa-solid fa-xmark"></i>
                             </button>
-
                         </header>
-
                         <main class="carrinhoVazio">
-
                             <i class="ri-shopping-cart-line iconeCarrinhoVazio"></i>
-
                             <h2>Carrinho vazio</h2>
-
                             <p>Entre em um comércio e adicione produtos.</p>
-
                         </main>
-
                     </div>
-
                     <div id="overlayPerfil"></div>
                     <div id="perfil">
-
                         <header id="headerPerfil">
-
                             <div class="infoPerfil">
-
                                 <div class="dadosPerfil">
                                     <span class="nomePerfil">Meu Perfil</span>
                                 </div>
-
                             </div>
-
                             <button id="fecharPerfil">
                                 <i class="fa-solid fa-xmark"></i>
                             </button>
-
                         </header>
-
                         <main class="mainPerfil">
-
                             <section class="cardUsuario">
-
                                 <div class="avatarUsuario">
-                                    <span id="inicialUsuario">G</span>
+                                    <span id="inicialUsuario"></span>
                                 </div>
-
                                 <div class="infoUsuario">
-                                    <h3 id="nomeUsuario">Nome do Usuário</h3>
-                                    <p id="emailUsuario">email@email.com</p>
-
+                                    <h3 id="nomeUsuario"></h3>
+                                    <p id="emailUsuario"></p>
                                     <span class="statusConta">
                                         ● Conta ativa
                                     </span>
                                 </div>
-
                                 <button id="abrirDadosConta" class="btnPerfilDetalhes">
                                     <i class="fa-solid fa-chevron-right"></i>
                                 </button>
-
-
                             </section>
-
                             <section class="resumoConta">
-
                                 <div class="cardResumo">
                                     <strong id="totalPedidos">0</strong>
                                     <span>Pedidos</span>
                                 </div>
-
                                 <div class="cardResumo">
                                     <strong id="totalEnderecos">0</strong>
                                     <span>Endereços</span>
                                 </div>
-
                                 <div class="cardResumo">
                                     <strong id="totalCartoes">0</strong>
                                     <span>Cartões</span>
                                 </div>
-
                             </section>
-
                             <section class="menuPerfil">
-
                                 <div class="itemPerfil">
                                     <span>Meus Pedidos</span>
                                     <i class="fa-solid fa-chevron-right"></i>
                                 </div>
-
                                 <div class="itemPerfil">
                                     <span>Comércios Favoritos</span>
                                     <i class="fa-solid fa-chevron-right"></i>
                                 </div>
-
                                 <div class="itemPerfil">
                                     <span>Endereços Salvos</span>
                                     <i class="fa-solid fa-chevron-right"></i>
                                 </div>
-
                                 <div class="itemPerfil">
                                     <span>Meus Cartões</span>
                                     <i class="fa-solid fa-chevron-right"></i>
                                 </div>
-
                                 <div class="itemPerfil">
                                     <span>Notificações</span>
                                     <i class="fa-solid fa-chevron-right"></i>
                                 </div>
-
                                 <div class="itemPerfil">
                                     <span>Dados da Conta</span>
                                     <i class="fa-solid fa-chevron-right"></i>
                                 </div>
-
                             </section>
-
                             <button class="btnSair">
                                 Sair da conta
                             </button>
-
                         </main>
-
                     </div>
 
-
-
                     <div id="dadosConta">
-
                         <header id="headerDadosConta">
-
                             <button id="voltarPerfil">
                                 <i class="fa-solid fa-arrow-left"></i>
                             </button>
-
                             <span>Dados da Conta</span>
-
                             <button id="fecharDadosConta">
                                 <i class="fa-solid fa-xmark"></i>
                             </button>
-
                         </header>
-
                         <main class="mainDadosConta">
-
                             <section class="cardPerfilConta">
-
                                 <div class="avatarContainer">
-
-                                    <div class="avatar">
-                                        G
+                                    <div class="avatar" id="avatarConta">
                                     </div>
-
                                     <button class="btnFoto">
                                         <i class="fa-solid fa-plus"></i>
                                     </button>
-
                                 </div>
-
-                                <h2>Gabriela de Almeida Dias</h2>
-
-                                <p>gabriela@email.com</p>
-
+                                <h2 id="nomeConta"></h2>
+                                <p id="emailConta"></p>
                             </section>
-
                             <section class="cardInformacoes">
-
                                 <div class="linhaInfo">
                                     <span>NOME</span>
-                                    <strong>Gabriela de Almeida Dias</strong>
+                                    <strong id="nomeInformacao"></strong>
                                 </div>
-
                                 <div class="linhaInfo">
                                     <span>E-MAIL</span>
-                                    <strong>gabriela@email.com</strong>
+                                    <strong id="emailInformacao"></strong>
                                 </div>
-
                                 <div class="linhaInfo">
                                     <span>TELEFONE</span>
-                                    <strong>(11) 99999-9999</strong>
+                                    <strong id="telefoneInformacao"></strong>
                                 </div>
-
                                 <div class="linhaInfo">
                                     <span>MEMBRO DESDE</span>
-                                    <strong>Janeiro 2026</strong>
+                                    <strong id="membroDesde"></strong>
                                 </div>
-
                             </section>
-
-                            <button class="botaoConta">
+                            <button class="botaoContaEditarDados">
                                 Editar dados
                             </button>
-
-                            <button class="botaoConta">
+                            <button class="botaoContaAlterarSenha">
                                 Alterar senha
                             </button>
-
                             <button class="botaoContaExcluir">
                                 Excluir minha conta
                             </button>
-
                         </main>
-
                     </div>
 
-
                 </div>
-
             </section>
-
         </section>
-
     </header>
-
     <main>
-
         <div class="pesquisaMobile">
             <form class="pesquisa">
                 <i class="fa-solid fa-magnifying-glass"></i>
                 <input type="text" id="campoPesquisa" placeholder="Buscar comércio...">
             </form>
         </div>
-
         <section class="comerciosProximos">
-
             <h1>Comércios mais próximos de você</h1>
-
             <div class="localizacao">
                 <i class="fa-solid fa-location-dot"></i>
                 <span>São Paulo, SP</span>
             </div>
-
             <div class="resumoComercios">
                 <span>0 comércios encontrados</span>
-
                 <div class="precoAoVivo">
                     <span class="bolinha"></span>
                     preços ao vivo
                 </div>
             </div>
-
             <div id="listaComercios">
-
                 <!-- Os cards serão adicionados aqui futuramente -->
-
                 <div class="semComercios">
-
                     <i class="fa-solid fa-store"></i>
-
                     <h3>Nenhum comércio disponível</h3>
-
                     <p>
                         Quando algum comércio parceiro cadastrar produtos
                         no sistema, ele aparecerá aqui.
                     </p>
-
                 </div>
-
             </div>
-
         </section>
-
     </main>
-
     <footer>
 
-
-
     </footer>
-
 </body>
 
 </html>

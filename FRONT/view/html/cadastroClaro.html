@@ -15,9 +15,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <script src="../js/mascaras.js" defer></script>
-    <script src="../../../BACK/validation/validacoes.js" defer></script>
     <script src="../js/mudarTema.js" defer></script>
     <script src="../js/acessibilidade.js" defer></script>
+    <script src="../../controller_view/api.js" defer></script>
+    <script src="../../controller_view/cadastrar.js" defer></script>
 </head>
 
 <body>
@@ -81,38 +82,41 @@
             <img id="logoClara" src="../imagens/logoClara.png" alt="Logo da gvendix claro">
         </section>
 
-        <section id="formulario">
+        <section id="formularioCadastro">
 
             <div class="botoes">
                 <a href="../html/loginClaro.html" class="btn entrar">Entrar</a>
                 <a href="../html/cadastroClaro.html" class="btn criarConta ativo">Criar conta</a>
             </div>
 
-            <form>
+            <form id="frmUsuario">
+
+                <div id="divMensagens"></div>
+
                 <div class="input-box">
                     <i class="fa-regular fa-user"></i>
-                    <input type="text" placeholder="Digite seu nome completo">
+                    <input type="text" name="nome" id="nome" placeholder="Digite seu nome completo">
                 </div>
 
                 <div class="input-box">
                     <i class="fa-solid fa-phone"></i>
-                    <input type="tel" id="telefone" maxlength="15" placeholder="Digite seu telefone">
+                    <input type="tel" name="telefone" id="telefone" maxlength="15" placeholder="Digite seu telefone">
                 </div>
 
                 <div class="input-box">
                     <i class="fa-regular fa-envelope"></i>
-                    <input type="email" placeholder="seu@email.com">
+                    <input type="email" name="email" id="email" placeholder="seu@email.com">
                 </div>
 
                 <div class="input-box">
                     <i class="fa-solid fa-lock"></i>
-                    <input type="password" placeholder="Digite sua senha">
+                    <input type="password" name="senha" id="senha" placeholder="Digite sua senha">
 
                 </div>
 
                 <div class="input-box">
                     <i class="fa-solid fa-lock"></i>
-                    <input type="password" placeholder="Confirme sua senha">
+                    <input type="password" name="confirSenha" id="confirSenha" placeholder="Confirme sua senha">
 
                 </div>
 

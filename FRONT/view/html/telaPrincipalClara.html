@@ -19,7 +19,11 @@
     <script src="../js/mudarTema.js" defer></script>
     <script src="../js/acessibilidade.js" defer></script>
     <script src="../js/carrinho.js" defer></script>
-    <script src="../js/perfil.js" defer></script>
+    <script src="../../controller_view/perfil.js" defer></script>
+    <script src="../js/perfilFront.js" defer></script>
+    <script src="../../controller_view/excluir.js" defer></script>
+    <script src="../../controller_view/atualizar.js" defer></script>
+    <script src="../../controller_view/excluir.js" defer></script>
 </head>
 
 <body>
@@ -151,14 +155,13 @@
                         <main class="mainPerfil">
 
                             <section class="cardUsuario">
-
                                 <div class="avatarUsuario">
-                                    <span id="inicialUsuario">G</span>
+                                    <span id="inicialUsuario"></span>
                                 </div>
 
                                 <div class="infoUsuario">
-                                    <h3 id="nomeUsuario">Nome do Usuário</h3>
-                                    <p id="emailUsuario">email@email.com</p>
+                                    <h3 id="nomeUsuario"></h3>
+                                    <p id="emailUsuario"></p>
 
                                     <span class="statusConta">
                                         ● Conta ativa
@@ -168,8 +171,6 @@
                                 <button id="abrirDadosConta" class="btnPerfilDetalhes">
                                     <i class="fa-solid fa-chevron-right"></i>
                                 </button>
-
-
                             </section>
 
                             <section class="resumoConta">
@@ -254,45 +255,39 @@
                         <main class="mainDadosConta">
 
                             <section class="cardPerfilConta">
-
                                 <div class="avatarContainer">
-
-                                    <div class="avatar">
-                                        G
+                                    <div class="avatar" id="avatarConta">
                                     </div>
 
                                     <button class="btnFoto">
                                         <i class="fa-solid fa-plus"></i>
                                     </button>
-
                                 </div>
 
-                                <h2>Gabriela de Almeida Dias</h2>
-
-                                <p>gabriela@email.com</p>
-
+                                <h2 id="nomeConta"></h2>
+                                <p id="emailConta"></p>
                             </section>
 
                             <section class="cardInformacoes">
 
                                 <div class="linhaInfo">
                                     <span>NOME</span>
-                                    <strong>Gabriela de Almeida Dias</strong>
+                                    <strong id="nomeInformacao"></strong>
                                 </div>
 
                                 <div class="linhaInfo">
                                     <span>E-MAIL</span>
-                                    <strong>gabriela@email.com</strong>
+                                    <strong id="emailInformacao"></strong>
                                 </div>
 
                                 <div class="linhaInfo">
                                     <span>TELEFONE</span>
-                                    <strong>(11) 99999-9999</strong>
+                                    <strong id="telefoneInformacao"></strong>
                                 </div>
 
                                 <div class="linhaInfo">
                                     <span>MEMBRO DESDE</span>
-                                    <strong>Janeiro 2026</strong>
+                                    <strong id="membroDesde"></strong>
                                 </div>
 
                             </section>

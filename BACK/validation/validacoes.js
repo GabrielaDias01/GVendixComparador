@@ -1,10 +1,22 @@
-function validacoes(req, res, next){
+function usuarioValidacoes(req, res, next) {
 
-    const {nome, email, senha} = req.body;
+    const { nome, telefone, email, senha } = req.body;
 
-    if (!nome || nome.trim() === ""){
+    if (!nome || nome.trim() === "") {
         return res.status(400).json({
             erro: "O nome é obrigatório!"
+        });
+    }
+
+    if (!telefone || String(telefone).trim() === "") {
+        return res.status(400).json({
+            erro: "O telefone é obrigatório!"
+        });
+    }
+
+    if (String(telefone).length !== 11) {
+        return res.status(400).json({
+            erro: "O telefone deve ter 11 números!"
         });
     }
 
@@ -14,7 +26,7 @@ function validacoes(req, res, next){
         });
     }
 
-    if (!senha || senha.trim() === ""){
+    if (!senha || senha.trim() === "") {
         return res.status(400).json({
             erro: "A senha é obrigatória!"
         });
@@ -22,4 +34,4 @@ function validacoes(req, res, next){
     next();
 }
 
-module.exports = validacoes;
+module.exports = usuarioValidacoes;
