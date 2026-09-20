@@ -1,13 +1,19 @@
 const btnEditar = document.querySelector(".botaoContaEditarDados");
+
 const btnSalvar = document.querySelector(".botaoContaSalvarDados");
+
 const btnCancelar = document.querySelector(".botaoContaCancelarEdicao");
 
 const btnEditarDados = document.querySelector(".botaoContaEditarDados");
+
 const btnExcluirConta = document.querySelector(".botaoContaExcluir");
+
 const btnAlterarSenha = document.querySelector(".botaoContaAlterarSenha");
 
 const nomeInformacao = document.querySelector("#nomeInformacao");
+
 const emailInformacao = document.querySelector("#emailInformacao");
+
 const telefoneInformacao = document.querySelector("#telefoneInformacao");
 
 const botoesEdicao = document.querySelector(".botoesEdicao");
@@ -17,21 +23,15 @@ let emailOriginal;
 let telefoneOriginal;
 
 
-// ==========================================
 // EDITAR DADOS
-// ==========================================
 
 btnEditar.addEventListener("click", function () {
 
-    // Salva os dados atuais
     nomeOriginal = nomeInformacao.textContent.trim();
+
     emailOriginal = emailInformacao.textContent.trim();
+
     telefoneOriginal = telefoneInformacao.textContent.trim();
-
-
-    // ==========================================
-    // TRANSFORMA OS DADOS EM INPUTS
-    // ==========================================
 
     nomeInformacao.innerHTML = `
         <input
@@ -57,246 +57,244 @@ btnEditar.addEventListener("click", function () {
         >
     `;
 
-
-    // ==========================================
-    // ESCONDE OS BOTÕES PRINCIPAIS
-    // ==========================================
-
     btnEditarDados.style.display = "none";
+
     btnAlterarSenha.style.display = "none";
+
     btnExcluirConta.style.display = "none";
-
-
-    // ==========================================
-    // MOSTRA SALVAR E CANCELAR
-    // ==========================================
 
     botoesEdicao.style.display = "flex";
 
 });
 
 
-// ==========================================
 // CANCELAR EDIÇÃO
-// ==========================================
 
 btnCancelar.addEventListener("click", function () {
 
-    // Volta os valores anteriores
     nomeInformacao.textContent = nomeOriginal;
+
     emailInformacao.textContent = emailOriginal;
+
     telefoneInformacao.textContent = telefoneOriginal;
 
-
-    // Esconde Salvar e Cancelar
     botoesEdicao.style.display = "none";
 
-
-    // Mostra novamente os botões principais
     btnEditarDados.style.display = "";
+
     btnAlterarSenha.style.display = "";
+
     btnExcluirConta.style.display = "";
 
 });
 
 
-// ==========================================
 // SALVAR ALTERAÇÕES
-// ==========================================
 
-btnSalvar.addEventListener("click", function () {
+btnSalvar.addEventListener("click", async function () {
+
+    const usuarioAtual = JSON.parse(
+        localStorage.getItem("usuario") ||
+        sessionStorage.getItem("usuario")
+    );
+
+    const tokenAtual =
+        localStorage.getItem("token") ||
+        sessionStorage.getItem("token");
+
+    if (!usuarioAtual || !tokenAtual) {
+
+        window.location.href = "loginEscuro.html";
+
+        return;
+
+    }
 
     const inputNome = document.querySelector("#inputNome");
+
     const inputEmail = document.querySelector("#inputEmail");
+
     const inputTelefone = document.querySelector("#inputTelefone");
 
-
-    // ==========================================
-    // VERIFICA SE OS INPUTS EXISTEM
-    // ==========================================
-
     if (!inputNome || !inputEmail || !inputTelefone) {
+
         console.log("Campos de edição não encontrados.");
+
         return;
+
     }
-
-
-    // ==========================================
-    // PEGA OS NOVOS VALORES
-    // ==========================================
 
     const novoNome = inputNome.value.trim();
+
     const novoEmail = inputEmail.value.trim();
+
     const novoTelefone = inputTelefone.value.trim();
 
-
-    // ==========================================
-    // VALIDAÇÕES
-    // ==========================================
-
     if (novoNome === "") {
-        alert("Digite seu nome.");
-        inputNome.focus();
-        return;
-    }
 
+        alert("Digite seu nome.");
+
+        inputNome.focus();
+
+        return;
+
+    }
 
     if (novoEmail === "") {
-        alert("Digite seu e-mail.");
-        inputEmail.focus();
-        return;
-    }
 
+        alert("Digite seu e-mail.");
+
+        inputEmail.focus();
+
+        return;
+
+    }
 
     if (novoTelefone === "") {
+
         alert("Digite seu telefone.");
+
         inputTelefone.focus();
+
         return;
+
     }
 
+    try {
 
-    // ==========================================
-    // TOKEN
-    // ==========================================
+        const resposta = await fetch(
+            `http://localhost:3000/usuarios/${usuarioAtual.id}`,
+            {
+                method: "PUT",
 
-    const token = localStorage.getItem("token");
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${tokenAtual}`
+                },
 
-
-    // ==========================================
-    // ENVIA PARA O BACK-END
-    // ==========================================
-
-    fetch(`http://localhost:3000/usuarios/${usuario.id}`, {
-
-        method: "PUT",
-
-        headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${token}`
-        },
-
-        body: JSON.stringify({
-
-            nome: novoNome,
-            email: novoEmail,
-            telefone: novoTelefone
-
-        })
-
-    })
-
-        .then(response => {
-
-            if (!response.ok) {
-                throw new Error("Erro ao atualizar os dados.");
+                body: JSON.stringify({
+                    nome: novoNome,
+                    email: novoEmail,
+                    telefone: novoTelefone
+                })
             }
+        );
 
-            return response.json();
+        const dados = await resposta.json();
 
-        })
+        if (!resposta.ok) {
 
-        .then(dados => {
+            throw new Error(
+                dados.erro || "Erro ao atualizar os dados."
+            );
 
-            console.log(dados);
+        }
 
+        nomeInformacao.textContent = novoNome;
 
-            // ==========================================
-            // ATUALIZA DADOS NA TELA
-            // ==========================================
+        emailInformacao.textContent = novoEmail;
 
-            nomeInformacao.textContent = novoNome;
-            emailInformacao.textContent = novoEmail;
-            telefoneInformacao.textContent = novoTelefone;
+        telefoneInformacao.textContent = novoTelefone;
 
+        nomeOriginal = novoNome;
 
-            // ==========================================
-            // ATUALIZA VALORES ORIGINAIS
-            // ==========================================
+        emailOriginal = novoEmail;
 
-            nomeOriginal = novoNome;
-            emailOriginal = novoEmail;
-            telefoneOriginal = novoTelefone;
+        telefoneOriginal = novoTelefone;
 
 
-            // ==========================================
-            // ESCONDE SALVAR/CANCELAR
-            // ==========================================
+        // ATUALIZA USUÁRIO SALVO
 
-            botoesEdicao.style.display = "none";
+        usuarioAtual.nome = novoNome;
 
+        usuarioAtual.email = novoEmail;
 
-            // ==========================================
-            // MOSTRA OS BOTÕES PRINCIPAIS
-            // ==========================================
+        if (localStorage.getItem("usuario")) {
 
-            btnEditarDados.style.display = "";
-            btnAlterarSenha.style.display = "";
-            btnExcluirConta.style.display = "";
+            localStorage.setItem(
+                "usuario",
+                JSON.stringify(usuarioAtual)
+            );
 
+        } else {
 
-            // ==========================================
-            // PEGA OUTROS ELEMENTOS DA TELA
-            // ==========================================
+            sessionStorage.setItem(
+                "usuario",
+                JSON.stringify(usuarioAtual)
+            );
 
-            const nomeConta = document.querySelector("#nomeConta");
-            const emailConta = document.querySelector("#emailConta");
-
-            const nomeUsuario = document.querySelector("#nomeUsuario");
-            const emailUsuario = document.querySelector("#emailUsuario");
-
-            const inicialUsuario = document.querySelector("#inicialUsuario");
-            const avatarConta = document.querySelector("#avatarConta");
+        }
 
 
-            // ==========================================
-            // ATUALIZA CABEÇALHO DOS DADOS
-            // ==========================================
+        // ATUALIZA INFORMAÇÕES DA TELA
 
-            if (nomeConta) {
-                nomeConta.textContent = novoNome;
-            }
+        const nomeConta = document.querySelector("#nomeConta");
 
-            if (emailConta) {
-                emailConta.textContent = novoEmail;
-            }
+        const emailConta = document.querySelector("#emailConta");
+
+        const nomeUsuario = document.querySelector("#nomeUsuario");
+
+        const emailUsuario = document.querySelector("#emailUsuario");
+
+        const inicialUsuario = document.querySelector("#inicialUsuario");
+
+        const avatarConta = document.querySelector("#avatarConta");
+
+        if (nomeConta) {
+
+            nomeConta.textContent = novoNome;
+
+        }
+
+        if (emailConta) {
+
+            emailConta.textContent = novoEmail;
+
+        }
+
+        if (nomeUsuario) {
+
+            nomeUsuario.textContent = novoNome;
+
+        }
+
+        if (emailUsuario) {
+
+            emailUsuario.textContent = novoEmail;
+
+        }
+
+        if (inicialUsuario && novoNome.length > 0) {
+
+            inicialUsuario.textContent =
+                novoNome.charAt(0).toUpperCase();
+
+        }
+
+        if (avatarConta && novoNome.length > 0) {
+
+            avatarConta.textContent =
+                novoNome.charAt(0).toUpperCase();
+
+        }
 
 
-            // ==========================================
-            // ATUALIZA CARD DO PERFIL
-            // ==========================================
+        botoesEdicao.style.display = "none";
 
-            if (nomeUsuario) {
-                nomeUsuario.textContent = novoNome;
-            }
+        btnEditarDados.style.display = "";
 
-            if (emailUsuario) {
-                emailUsuario.textContent = novoEmail;
-            }
+        btnAlterarSenha.style.display = "";
 
+        btnExcluirConta.style.display = "";
 
-            // ==========================================
-            // ATUALIZA INICIAL DO AVATAR
-            // ==========================================
+        alert("Dados atualizados com sucesso!");
 
-            if (inicialUsuario && novoNome.length > 0) {
-                inicialUsuario.textContent =
-                    novoNome.charAt(0).toUpperCase();
-            }
+    } catch (erro) {
 
+        console.error(erro);
 
-            if (avatarConta && novoNome.length > 0) {
-                avatarConta.textContent =
-                    novoNome.charAt(0).toUpperCase();
-            }
+        alert("Não foi possível atualizar os dados.");
 
-        })
-
-        .catch(erro => {
-
-            console.log(erro);
-
-            alert("Não foi possível atualizar os dados.");
-
-        });
+    }
 
 });

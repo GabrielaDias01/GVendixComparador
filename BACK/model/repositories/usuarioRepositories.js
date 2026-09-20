@@ -31,22 +31,36 @@ exports.listar = (callback) => {
 };
 
 exports.atualizar = (id, usuario, callback) => {
+
     const sql = `
-    UPDATE tbl_usuarios
-    SET nome = ?, telefone = ?, email = ?, senha = ?
-    WHERE id = ?
+        UPDATE tbl_usuarios
+        SET nome = ?, telefone = ?, email = ?
+        WHERE id = ?
     `;
 
-    valores = [usuario.nome, usuario.telefone, usuario.email, usuario.senha, id];
+    const valores = [
+        usuario.nome,
+        usuario.telefone,
+        usuario.email,
+        id
+    ];
 
     conexao.query(sql, valores, (erro, resultado) => {
 
         if (erro) {
+
             console.error("ERRO SQL:", erro);
-            return;
+
+            return callback({
+                erro: "Erro ao atualizar usuário"
+            });
+
         }
+
         callback(resultado);
+
     });
+
 };
 
 

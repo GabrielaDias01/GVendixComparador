@@ -1,11 +1,15 @@
-const usuarioLogado = JSON.parse(
+const usuarioLogadoAuth = JSON.parse(
     localStorage.getItem("usuario") ||
     sessionStorage.getItem("usuario")
 );
 
-console.log("Usuário: ", usuarioLogado);
+const tokenAuth =
+    localStorage.getItem("token") ||
+    sessionStorage.getItem("token");
 
-if (!usuarioLogado) {
+console.log("Usuário:", usuarioLogadoAuth);
+
+if (!usuarioLogadoAuth || !tokenAuth) {
 
     console.log("Não está logado");
 
@@ -17,20 +21,27 @@ if (!usuarioLogado) {
 
 }
 
+
+// BOTÃO SAIR DA CONTA
+
 const btnSair = document.querySelector(".btnSair");
 
-btnSair.addEventListener("click", () => {
+if (btnSair) {
 
-    // Sai da conta
+    btnSair.addEventListener("click", function () {
 
-    localStorage.removeItem("token");
-    localStorage.removeItem("usuario");
+        localStorage.removeItem("token");
 
-    sessionStorage.removeItem("token");
-    sessionStorage.removeItem("usuario");
+        localStorage.removeItem("usuario");
 
-    // NÃO remove o emailLembrado
+        sessionStorage.removeItem("token");
 
-    window.location.href = "loginEscuro.html";
+        sessionStorage.removeItem("usuario");
 
-});
+        // NÃO REMOVE emailLembrado
+
+        window.location.href = "loginEscuro.html";
+
+    });
+
+}

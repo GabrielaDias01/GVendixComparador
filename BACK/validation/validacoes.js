@@ -33,5 +33,3 @@ function usuarioValidacoes(req, res, next) {
     }
     next();
 }
-
-module.exports = usuarioValidacoes;
