@@ -5,11 +5,19 @@ exports.salvar = (req, res) => {
     const usuario = req.body;
 
     model.cadastrarUsuario(usuario, (resultado) => {
+
+        if (resultado.erro) {
+            return res.status(400).json(resultado);
+        }
+
         res.status(201).json({
             mensagem: "Usuário cadastrado com sucesso!"
         });
+
     });
+
 };
+
 
 exports.listar = (req, res) => {
     model.listarUsuarios((resultado) => {
@@ -83,4 +91,29 @@ exports.perfil = (req, res) => {
 
     });
 
+};
+
+exports.alterarSenha = (req, res) => {
+
+    const { email, senha } = req.body;
+
+    console.log("DADOS RECEBIDOS:", req.body);
+
+    if (!email || !senha) {
+        return res.status(400).json({
+            erro: "E-mail e senha são obrigatórios"
+        });
+    }
+
+    model.alterarSenha(email, senha, (resultado) => {
+
+        if (resultado.erro) {
+            return res.status(400).json(resultado);
+        }
+
+        res.status(200).json({
+            mensagem: "Senha alterada com sucesso!"
+        });
+
+    });
 };

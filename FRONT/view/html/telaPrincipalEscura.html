@@ -7,20 +7,19 @@
     <title>Tela do Comparador Escura</title>
     <link rel="stylesheet" href="../css/telaPrincipalEscura.css">
     <link rel="stylesheet" href="../css/mudarTemaTelaPrincipal.css">
-    <link rel="stylesheet" href="../css/acessibilidade.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon/remixicon.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css">
 
     <script src="../js/mudarTema.js" defer></script>
-    <script src="../js/acessibilidade.js" defer></script>
     <script src="../js/carrinho.js" defer></script>
     <script src="../../controller_view/perfil.js" defer></script>
     <script src="../js/perfilFront.js" defer></script>
-    <script src="../../controller_view/excluir.js" defer></script>
     <script src="../../controller_view/atualizar.js" defer></script>
+    <script src="../../../BACK/validation/validacoes.js" defer></script>
     <script src="../../controller_view/excluir.js" defer></script>
+    <script src="../../controller_view/auth.js" defer></script>
 </head>
 
 <body>
@@ -208,9 +207,85 @@
                             <button class="botaoContaEditarDados">
                                 Editar dados
                             </button>
-                            <button class="botaoContaAlterarSenha">
+
+                            <div class="botoesEdicao">
+                                <button class="botaoContaSalvarDados">
+                                    Salvar
+                                </button>
+
+                                <button class="botaoContaCancelarEdicao">
+                                    Cancelar
+                                </button>
+                            </div>
+                            <button type="button" class="botaoContaAlterarSenha">
                                 Alterar senha
                             </button>
+
+                            <div class="formAlterarSenha" id="formAlterarSenha">
+
+                                <!-- NOVA SENHA -->
+                                <div class="campoSenha">
+
+                                    <label for="novaSenha">
+                                        NOVA SENHA
+                                    </label>
+
+                                    <div class="inputSenha">
+
+                                        <i class="fa-solid fa-lock iconeSenha"></i>
+
+                                        <input type="password" id="novaSenha" placeholder="Digite sua nova senha"
+                                            autocomplete="new-password">
+
+                                        <button type="button" class="mostrarSenha" data-input="novaSenha"
+                                            aria-label="Mostrar senha">
+                                            <i class="fa-solid fa-eye"></i>
+                                        </button>
+
+                                    </div>
+
+                                </div>
+
+
+                                <!-- CONFIRMAR SENHA -->
+                                <div class="campoSenha">
+
+                                    <label for="confirmarSenha">
+                                        CONFIRMAR NOVA SENHA
+                                    </label>
+
+                                    <div class="inputSenha">
+
+                                        <i class="fa-solid fa-lock iconeSenha"></i>
+
+                                        <input type="password" id="confirmarSenha" placeholder="Confirme sua nova senha"
+                                            autocomplete="new-password">
+
+                                        <button type="button" class="mostrarSenha" data-input="confirmarSenha"
+                                            aria-label="Mostrar senha">
+                                            <i class="fa-solid fa-eye"></i>
+                                        </button>
+
+                                    </div>
+
+                                </div>
+
+
+                                <!-- BOTÕES -->
+                                <div class="botoesSenha">
+
+                                    <button type="button" class="botaoSalvarSenha" id="salvarSenha">
+                                        Salvar
+                                    </button>
+
+                                    <button type="button" class="botaoCancelarSenha" id="cancelarSenha">
+                                        Cancelar
+                                    </button>
+
+                                </div>
+
+                            </div>
+
                             <button class="botaoContaExcluir">
                                 Excluir minha conta
                             </button>

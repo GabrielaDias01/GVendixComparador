@@ -2,20 +2,30 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const usuarioRepositorio = require("../repositories/usuarioRepositories");
 
-exports.cadastrarUsuario = async(usuario, callback) => {
+exports.cadastrarUsuario = async (usuario, callback) => {
 
-    try{
-        usuario.senha = await bcrypt.hash(
-            usuario.senha,
-            10
-        );
+    usuarioRepositorio.buscarPorEmail(usuario.email, async (usuarioEncontrado) => {
 
-        usuarioRepositorio.salvar(usuario, (resultado) => {
-            callback(resultado);
-        });
-    }catch(erro){
-        console.log(erro);
-    }
+        if (usuarioEncontrado) {
+            return callback({
+                erro: "E-mail já cadastrado"
+            });
+        }
+
+        try {
+            usuario.senha = await bcrypt.hash(
+                usuario.senha,
+                10
+            );
+
+            usuarioRepositorio.salvar(usuario, (resultado) => {
+                callback(resultado);
+            });
+        }
+        catch (erro) {
+            console.log(erro);
+        }
+    });
 };
 
 exports.listarUsuarios = (callback) => {
@@ -24,10 +34,10 @@ exports.listarUsuarios = (callback) => {
     });
 };
 
-exports.atualizarUsuario = async(idUsuario,usuario,callback) => {
-    try{
+exports.atualizarUsuario = async (idUsuario, usuario, callback) => {
+    try {
 
-        if (usuario.senha){
+        if (usuario.senha) {
 
             usuario.senha = await bcrypt.hash(
                 usuario.senha,
@@ -43,7 +53,7 @@ exports.atualizarUsuario = async(idUsuario,usuario,callback) => {
                 callback(resultado);
             }
         );
-    } catch(erro){
+    } catch (erro) {
         console.error(erro);
     }
 };
@@ -99,6 +109,40 @@ exports.login = (email, senha, callback) => {
 
     });
 
+};
+
+exports.alterarSenha = async (email, senha, callback) => {
+
+    usuarioRepositorio.buscarPorEmail(email, async (usuario) => {
+
+        if (!usuario) {
+            return callback({
+                erro: "E-mail não encontrado"
+            });
+        }
+
+        try {
+
+            const novaSenha = await bcrypt.hash(senha, 10);
+
+            usuarioRepositorio.alterarSenha(
+                email,
+                novaSenha,
+                (resultado) => {
+                    callback(resultado);
+                }
+            );
+
+        } catch (erro) {
+
+            console.error(erro);
+
+            callback({
+                erro: "Erro ao alterar a senha"
+            });
+
+        }
+    });
 };
 
 exports.buscarPorId = (id, callback) => {

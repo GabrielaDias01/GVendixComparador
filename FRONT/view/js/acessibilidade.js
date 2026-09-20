@@ -1,5 +1,5 @@
-const btnAcessibilidade = document.getElementById("btnAcessibilidade");
-const menuAcessibilidade = document.getElementById("menuAcessibilidade");
+const btnAcessibilidade = document.getElementById(".btnAcessibilidade");
+const menuAcessibilidade = document.getElementById(".menuAcessibilidade");
 
 const btnLeitura = document.getElementById("btnLeitura");
 const btnAumentar = document.getElementById("btnAumentar");

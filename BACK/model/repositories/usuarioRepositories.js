@@ -100,3 +100,28 @@ exports.buscarPorId = (id, callback) => {
         callback(resultado[0]);
     });
 };
+
+exports.alterarSenha = (email, senha, callback) => {
+
+    const sql = `
+        UPDATE tbl_usuarios
+        SET senha = ?
+        WHERE email = ?
+    `;
+
+    conexao.query(sql, [senha, email], (erro, resultado) => {
+
+        if (erro) {
+            console.error("ERRO AO ALTERAR SENHA:", erro);
+
+            return callback({
+                erro: "Erro ao alterar senha"
+            });
+        }
+
+        console.log("E-MAIL:", email);
+        console.log("RESULTADO UPDATE:", resultado);
+
+        callback(resultado);
+    });
+};

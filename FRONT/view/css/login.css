@@ -186,3 +186,205 @@ legend i {
 #btnLogar i {
     margin-left: 8px;
 }
+
+/* ==========================
+   OPÇÕES DO LOGIN
+========================== */
+
+.opcoesLogin {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: -5px;
+    margin-bottom: 5px;
+}
+
+.lembrarSenha {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #9c9c9c;
+    font-size: 13px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.lembrarSenha input {
+    display: none;
+}
+
+.checkmark {
+    width: 17px;
+    height: 17px;
+    border: 1px solid #555;
+    border-radius: 4px;
+    background: #2F2F2F;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: .2s;
+}
+
+.lembrarSenha input:checked + .checkmark {
+    background: #ff7b00;
+    border-color: #ff7b00;
+}
+
+.lembrarSenha input:checked + .checkmark::after {
+    content: "\f00c";
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    color: white;
+    font-size: 10px;
+}
+
+.lembrarSenha:hover .checkmark {
+    border-color: #ff7b00;
+}
+
+#btnEsquecerSenha {
+    background: transparent;
+    border: none;
+    padding: 0;
+    color: #ff7b00;
+    font-size: 13px;
+    cursor: pointer;
+    transition: .2s;
+}
+
+#btnEsquecerSenha:hover {
+    color: #ff982f;
+    text-decoration: underline;
+}
+
+
+/* ==========================
+   RECUPERAÇÃO DE SENHA
+========================== */
+
+#recuperarSenha {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    width: 420px;
+    max-width: calc(100% - 40px);
+    background: #1c1c1c;
+    border: 1px solid #3a3a3a;
+    border-radius: 16px;
+    padding: 25px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, .6);
+}
+
+#recuperarSenha.ativo {
+    display: block;
+}
+
+.headerRecuperarSenha {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.headerRecuperarSenha h2 {
+    color: white;
+    font-size: 20px;
+}
+
+#fecharRecuperarSenha {
+    width: 32px;
+    height: 32px;
+    border: none;
+    border-radius: 8px;
+    background: #2F2F2F;
+    color: #aaa;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: .2s;
+}
+
+#fecharRecuperarSenha:hover {
+    background: #3a3a3a;
+    color: #ff7b00;
+}
+
+#recuperarSenha > p {
+    color: #8e8e8e;
+    font-size: 13px;
+    line-height: 1.5;
+    margin-bottom: 18px;
+}
+
+#recuperarSenha .input-box {
+    margin-bottom: 12px;
+}
+
+.botoesRecuperarSenha {
+    display: flex;
+    gap: 10px;
+    margin-top: 18px;
+}
+
+.botoesRecuperarSenha button {
+    flex: 1;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: .2s;
+}
+
+#btnCancelarRecuperacao {
+    background: transparent;
+    border: 1px solid #555;
+    color: white;
+}
+
+#btnCancelarRecuperacao:hover {
+    background: #2F2F2F;
+}
+
+#btnSalvarNovaSenha {
+    background: #ff7b00;
+    border: 1px solid #ff7b00;
+    color: white;
+}
+
+#btnSalvarNovaSenha:hover {
+    background: #e96f00;
+}
+
+
+/* ==========================
+   RESPONSIVIDADE
+========================== */
+
+@media (max-width: 480px) {
+    #formulario {
+        padding: 25px 20px;
+    }
+
+    .opcoesLogin {
+        gap: 10px;
+    }
+
+    .lembrarSenha,
+    #btnEsquecerSenha {
+        font-size: 12px;
+    }
+
+    #recuperarSenha {
+        padding: 20px;
+    }
+
+    .botoesRecuperarSenha {
+        flex-direction: column;
+    }
+}

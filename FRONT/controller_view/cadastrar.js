@@ -81,7 +81,7 @@ function validarFormularioUsuario(frmUsuario) {
     };
     if (frmUsuario.senha.value !== frmUsuario.confirSenha.value) {
         criaMensagem("As senhas não coincidem!");
-        return;
+        return false;
     };
     return true;
 }
