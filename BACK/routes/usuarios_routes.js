@@ -11,6 +11,7 @@ router.post("/",validarUsuario, usuariosController.salvar);
 router.get("/", usuariosController.listar);
 router.get("/perfil", authMiddleware, usuariosController.perfil);
 router.put("/alterar-senha", usuariosController.alterarSenha);
+router.put("/alterar-senha-logado", authMiddleware, usuariosController.alterarSenhaLogado);
 router.delete("/:id", usuariosController.excluir);
 router.put("/:id", usuariosController.atualizar);
 

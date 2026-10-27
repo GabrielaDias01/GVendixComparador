@@ -1,10 +1,11 @@
 const botaoAlterarSenha = document.querySelector(".botaoContaAlterarSenha");
 
-const formularioAlterarSenha = document.querySelector("#formAlterarSenha");
+const formularioAlterarSenha = document.querySelector(".formAlterarSenha");
 
 const botaoSalvarSenha = document.querySelector("#salvarSenha");
 const botaoCancelarSenha = document.querySelector("#cancelarSenha");
 
+const inputSenhaAtual = document.querySelector("#senhaAtual");
 const inputNovaSenha = document.querySelector("#novaSenha");
 const inputConfirmarSenha = document.querySelector("#confirmarSenha");
 
@@ -23,18 +24,206 @@ const botaoExcluirContaSenha = document.querySelector(".botaoContaExcluir");
 
 botaoAlterarSenha.addEventListener("click", function () {
 
-    // Mostra formulário
-    formularioAlterarSenha.classList.add("ativo");
-
-
     // Esconde os botões principais
     botaoAlterarSenha.style.display = "none";
     botaoEditarDadosSenha.style.display = "none";
     botaoExcluirContaSenha.style.display = "none";
 
+    // Mostra o formulário
+    formularioAlterarSenha.classList.add("ativo");
 
-    // Coloca o foco no primeiro campo
-    inputNovaSenha.focus();
+    // Coloca o cursor no campo da senha atual
+    inputSenhaAtual.focus();
+
+});
+
+
+// ==========================================
+// SALVAR NOVA SENHA
+// ==========================================
+
+botaoSalvarSenha.addEventListener("click", function () {
+
+    const senhaAtual = inputSenhaAtual.value;
+    const novaSenha = inputNovaSenha.value;
+    const confirmarSenha = inputConfirmarSenha.value;
+
+
+    // ==========================================
+    // SENHA ATUAL VAZIA
+    // ==========================================
+
+    if (senhaAtual.trim() === "") {
+
+        alert("Digite sua senha atual.");
+
+        inputSenhaAtual.focus();
+
+        return;
+    }
+
+
+    // ==========================================
+    // NOVA SENHA VAZIA
+    // ==========================================
+
+    if (novaSenha.trim() === "") {
+
+        alert("Digite sua nova senha.");
+
+        inputNovaSenha.focus();
+
+        return;
+    }
+
+
+    // ==========================================
+    // CONFIRMAÇÃO VAZIA
+    // ==========================================
+
+    if (confirmarSenha.trim() === "") {
+
+        alert("Confirme sua nova senha.");
+
+        inputConfirmarSenha.focus();
+
+        return;
+    }
+
+
+    // ==========================================
+    // TAMANHO DA NOVA SENHA
+    // ==========================================
+
+    if (novaSenha.length < 6) {
+
+        alert("A senha deve ter pelo menos 6 caracteres.");
+
+        inputNovaSenha.focus();
+
+        return;
+    }
+
+
+    // ==========================================
+    // CONFIRMAÇÃO
+    // ==========================================
+
+    if (novaSenha !== confirmarSenha) {
+
+        alert("As senhas não coincidem.");
+
+        inputConfirmarSenha.focus();
+
+        return;
+    }
+
+
+    // ==========================================
+    // IMPEDIR USAR A MESMA SENHA
+    // ==========================================
+
+    if (senhaAtual === novaSenha) {
+
+        alert("A nova senha deve ser diferente da senha atual.");
+
+        inputNovaSenha.focus();
+
+        return;
+    }
+
+
+    // ==========================================
+    // TOKEN DO USUÁRIO LOGADO
+    // ==========================================
+
+    const token =
+        localStorage.getItem("token") ||
+        sessionStorage.getItem("token");
+
+
+    if (!token) {
+
+        alert("Usuário não está logado.");
+
+        return;
+    }
+
+
+    // ==========================================
+    // ALTERAR SENHA
+    // ==========================================
+
+    fetch("http://localhost:3000/usuarios/alterar-senha-logado", {
+
+        method: "PUT",
+
+        headers: {
+
+            "Content-Type": "application/json",
+
+            "Authorization": `Bearer ${token}`
+
+        },
+
+        // Envia a senha atual e a nova senha
+        body: JSON.stringify({
+
+            senhaAtual: senhaAtual,
+            novaSenha: novaSenha
+
+        })
+
+    })
+
+        .then(async function (response) {
+
+            let dados = {};
+
+            try {
+
+                dados = await response.json();
+
+            } catch (erro) {
+
+                console.log("A resposta não possui JSON.");
+
+            }
+
+
+            if (!response.ok) {
+
+                throw new Error(
+                    dados.erro ||
+                    dados.mensagem ||
+                    dados.message ||
+                    "Não foi possível alterar a senha."
+                );
+
+            }
+
+
+            return dados;
+
+        })
+
+        .then(function (dados) {
+
+            console.log(dados);
+
+            alert("Senha alterada com sucesso!");
+
+            fecharAlteracaoSenha();
+
+        })
+
+        .catch(function (erro) {
+
+            console.log(erro);
+
+            alert(erro.message);
+
+        });
 
 });
 
@@ -61,11 +250,13 @@ function fecharAlteracaoSenha() {
 
 
     // Limpa os campos
+    inputSenhaAtual.value = "";
     inputNovaSenha.value = "";
     inputConfirmarSenha.value = "";
 
 
     // Volta os campos para password
+    inputSenhaAtual.type = "password";
     inputNovaSenha.type = "password";
     inputConfirmarSenha.type = "password";
 
@@ -80,7 +271,10 @@ function fecharAlteracaoSenha() {
         icone.classList.remove("fa-eye-slash");
         icone.classList.add("fa-eye");
 
-        botao.setAttribute("aria-label", "Mostrar senha");
+        botao.setAttribute(
+            "aria-label",
+            "Mostrar senha"
+        );
 
     });
 
@@ -129,6 +323,7 @@ botoesMostrarSenha.forEach(function (botao) {
 
         }
 
+
         // ==========================================
         // ESCONDER SENHA
         // ==========================================
@@ -148,157 +343,5 @@ botoesMostrarSenha.forEach(function (botao) {
         }
 
     });
-
-});
-
-
-// ==========================================
-// SALVAR NOVA SENHA
-// ==========================================
-
-botaoSalvarSenha.addEventListener("click", function () {
-
-    const novaSenha = inputNovaSenha.value;
-    const confirmarSenha = inputConfirmarSenha.value;
-
-
-    // ==========================================
-    // CAMPOS VAZIOS
-    // ==========================================
-
-    if (novaSenha.trim() === "") {
-
-        alert("Digite sua nova senha.");
-
-        inputNovaSenha.focus();
-
-        return;
-
-    }
-
-
-    if (confirmarSenha.trim() === "") {
-
-        alert("Confirme sua nova senha.");
-
-        inputConfirmarSenha.focus();
-
-        return;
-
-    }
-
-
-    // ==========================================
-    // TAMANHO DA SENHA
-    // ==========================================
-
-    if (novaSenha.length < 6) {
-
-        alert("A senha deve ter pelo menos 6 caracteres.");
-
-        inputNovaSenha.focus();
-
-        return;
-
-    }
-
-
-    // ==========================================
-    // CONFIRMAÇÃO
-    // ==========================================
-
-    if (novaSenha !== confirmarSenha) {
-
-        alert("As senhas não coincidem.");
-
-        inputConfirmarSenha.focus();
-
-        return;
-
-    }
-
-
-    // ==========================================
-    // TOKEN
-    // ==========================================
-
-    const token = localStorage.getItem("token");
-
-
-    // ==========================================
-    // ENVIA PARA O BACK-END
-    // ==========================================
-
-    fetch(`http://localhost:3000/usuarios/${usuario.id}`, {
-
-        method: "PUT",
-
-        headers: {
-
-            "Content-Type": "application/json",
-
-            "Authorization": `Bearer ${token}`
-
-        },
-
-        body: JSON.stringify({
-
-            senha: novaSenha
-
-        })
-
-    })
-
-        .then(async function (response) {
-
-            let dados = {};
-
-            try {
-
-                dados = await response.json();
-
-            }
-
-            catch (erro) {
-
-                console.log("A resposta não possui JSON.");
-
-            }
-
-
-            if (!response.ok) {
-
-                throw new Error(
-                    dados.mensagem ||
-                    dados.message ||
-                    "Não foi possível alterar a senha."
-                );
-
-            }
-
-
-            return dados;
-
-        })
-
-        .then(function (dados) {
-
-            console.log(dados);
-
-            alert("Senha alterada com sucesso!");
-
-
-            // Fecha o formulário
-            fecharAlteracaoSenha();
-
-        })
-
-        .catch(function (erro) {
-
-            console.log(erro);
-
-            alert(erro.message);
-
-        });
 
 });

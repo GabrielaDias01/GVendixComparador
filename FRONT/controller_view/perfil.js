@@ -7,6 +7,9 @@ const token =
     localStorage.getItem("token") ||
     sessionStorage.getItem("token");
 
+console.log("USUÁRIO:", usuario);
+console.log("TOKEN:", token);
+
 if (!token) {
 
     window.location.href = "loginEscuro.html";
@@ -25,65 +28,70 @@ fetch("http://localhost:3000/usuarios/perfil", {
 
 })
 
-.then(resposta => {
+    .then(async resposta => {
 
-    if (!resposta.ok) {
+        console.log("STATUS:", resposta.status);
+        console.log("URL:", resposta.url);
 
-        throw new Error("Não foi possível carregar o perfil");
+        const texto = await resposta.text();
 
-    }
+        console.log("RESPOSTA DO SERVIDOR:", texto);
 
-    return resposta.json();
+        if (!resposta.ok) {
+            throw new Error("Erro ao carregar perfil");
+        }
 
-})
+        return JSON.parse(texto);
 
-.then(usuario => {
+    })
 
-    // Perfil principal
+    .then(usuario => {
 
-    document.querySelector("#nomeUsuario").textContent = usuario.nome;
+        console.log("USUÁRIO RECEBIDO DO BACKEND:", usuario);
 
-    document.querySelector("#emailUsuario").textContent = usuario.email;
+        document.querySelector("#nomeUsuario").textContent = usuario.nome;
 
-
-    // Inicial do nome
-
-    document.querySelector("#inicialUsuario").textContent =
-        usuario.nome.charAt(0).toUpperCase();
-
-
-    // Dados da conta
-
-    document.querySelector("#nomeConta").textContent = usuario.nome;
-
-    document.querySelector("#emailConta").textContent = usuario.email;
+        document.querySelector("#emailUsuario").textContent = usuario.email;
 
 
-    // Avatar da conta
+        // Inicial do nome
 
-    document.querySelector("#avatarConta").textContent =
-        usuario.nome.charAt(0).toUpperCase();
-
-
-    // Informações
-
-    document.querySelector("#nomeInformacao").textContent = usuario.nome;
-
-    document.querySelector("#emailInformacao").textContent = usuario.email;
+        document.querySelector("#inicialUsuario").textContent =
+            usuario.nome.charAt(0).toUpperCase();
 
 
-    // Caso esses campos existam no banco
+        // Dados da conta
 
-    document.querySelector("#telefoneInformacao").textContent =
-        usuario.telefone || "Não informado";
+        document.querySelector("#nomeConta").textContent = usuario.nome;
 
-    document.querySelector("#membroDesde").textContent =
-        usuario.data_cadastro || "Não informado";
+        document.querySelector("#emailConta").textContent = usuario.email;
 
-})
 
-.catch(erro => {
+        // Avatar da conta
 
-    console.error(erro);
+        document.querySelector("#avatarConta").textContent =
+            usuario.nome.charAt(0).toUpperCase();
 
-});
+
+        // Informações
+
+        document.querySelector("#nomeInformacao").textContent = usuario.nome;
+
+        document.querySelector("#emailInformacao").textContent = usuario.email;
+
+
+        // Caso esses campos existam no banco
+
+        document.querySelector("#telefoneInformacao").textContent =
+            usuario.telefone || "Não informado";
+
+        document.querySelector("#membroDesde").textContent =
+            usuario.data_cadastro || "Não informado";
+
+    })
+
+    .catch(erro => {
+
+        console.error(erro);
+
+    });

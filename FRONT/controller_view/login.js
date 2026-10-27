@@ -7,8 +7,6 @@ const btnSalvarNovaSenha = document.querySelector("#btnSalvarNovaSenha");
 const emailLogin = document.querySelector("#email");
 const lembrarSenha = document.querySelector("#lembrarSenha");
 
-// VERIFICA SE EXISTE E-MAIL LEMBRADO
-
 const emailLembrado = localStorage.getItem("emailLembrado");
 
 if (emailLembrado) {
@@ -16,19 +14,15 @@ if (emailLembrado) {
     lembrarSenha.checked = true;
 }
 
-// ABRIR RECUPERAÇÃO DE SENHA
 
 btnEsquecerSenha.addEventListener("click", () => {
     recuperarSenha.classList.add("ativo");
 });
 
-// FECHAR RECUPERAÇÃO DE SENHA
-
 fecharRecuperarSenha.addEventListener("click", () => {
     recuperarSenha.classList.remove("ativo");
 });
 
-// CANCELAR RECUPERAÇÃO
 
 btnCancelarRecuperacao.addEventListener("click", () => {
     recuperarSenha.classList.remove("ativo");
@@ -43,7 +37,7 @@ btnSalvarNovaSenha.addEventListener("click", async () => {
     const confirmarNovaSenha = document.getElementById("confirmarNovaSenha").value.trim();
 
     if (!email || !novaSenha || !confirmarNovaSenha) {
-        alert("Todos os campos são obrigatórios!");
+        alert("Preencha todos os campos para alterar a senha.");
         return;
     }
 

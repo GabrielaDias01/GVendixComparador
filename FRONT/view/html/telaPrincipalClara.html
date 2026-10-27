@@ -8,67 +8,49 @@
 
     <link rel="stylesheet" href="../css/telaPrincipalClara.css">
     <link rel="stylesheet" href="../css/mudarTemaTelaPrincipal.css">
-    <link rel="stylesheet" href="../css/acessibilidade.css">
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon/remixicon.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css">
 
-
     <script src="../js/mudarTema.js" defer></script>
-    <script src="../js/acessibilidade.js" defer></script>
     <script src="../js/carrinho.js" defer></script>
     <script src="../../controller_view/perfil.js" defer></script>
     <script src="../js/perfilFront.js" defer></script>
-    <script src="../../controller_view/excluir.js" defer></script>
     <script src="../../controller_view/atualizar.js" defer></script>
     <script src="../../controller_view/excluir.js" defer></script>
+    <script src="../../controller_view/auth.js" defer></script>
+    <script src="../../controller_view/alterarSenha.js" defer></script>
 </head>
 
 <body>
-
     <header>
-
         <section class="nav">
-
             <section class="section">
-
                 <div class="iconedecompra">
-                    <img id="iconeDeCompra" src="../imagens/iconLimpoBranco.png" width="40" height="40"
-                        alt="Ícone laranja">
+                    <img id="iconeDeCompra" src="../imagens/iconLimpoBranco.png" width="40" height="40" alt="Ícone laranja">
                 </div>
 
                 <div class="logo">
-                    <img id="logoTransparente" src="../imagens/GVendix_preta_transparente.png" width="185" height="110"
-                        alt="Logo GVendix">
+                    <img id="logoTransparente" src="../imagens/GVendix_preta_transparente.png" width="185" height="110" alt="Logo GVendix">
                 </div>
-
             </section>
 
             <section class="section2">
-
                 <div class="divNav">
-
                     <nav>
-
                         <div class="pesquisaNav">
-
                             <form class="pesquisa" id="formPesquisa">
                                 <i class="fa-solid fa-magnifying-glass"></i>
-
                                 <input type="text" id="campoPesquisa" placeholder="Buscar comércio...">
                             </form>
-
                         </div>
 
                         <ul class="menu-icons">
-
                             <li class="carrinho">
                                 <a href="#" id="btnCarrinho" title="Carrinho">
                                     <i class="ri-shopping-cart-line"></i>
                                 </a>
-
                             </li>
 
                             <li class="perfil">
@@ -76,19 +58,14 @@
                                     <i class="fa-regular fa-circle-user"></i>
                                 </a>
                             </li>
-
                         </ul>
 
-
-                        <!-- MANTIDO COM O MESMO HTML DO SEU CSS -->
                         <section class="mudarTema">
-
                             <button id="btnConfig">
                                 <i class="fa-solid fa-gear"></i>
                             </button>
 
                             <div id="menuTema">
-
                                 <a href="./telaPrincipalClara.html">
                                     <i class="fa-solid fa-sun"></i>
                                     Tema Claro
@@ -98,18 +75,14 @@
                                     <i class="fa-solid fa-moon"></i>
                                     Tema Escuro
                                 </a>
-
                             </div>
-
                         </section>
-
                     </nav>
+
                     <div id="overlayCarrinho"></div>
 
                     <div id="carrinho">
-
                         <header id="headerCarrinho">
-
                             <div class="tituloCarrinho">
                                 <i class="ri-shopping-cart-line"></i>
                                 <span>Meu Carrinho</span>
@@ -118,42 +91,31 @@
                             <button id="fecharCarrinho">
                                 <i class="fa-solid fa-xmark"></i>
                             </button>
-
                         </header>
 
                         <main class="carrinhoVazio">
-
                             <i class="ri-shopping-cart-line iconeCarrinhoVazio"></i>
-
                             <h2>Carrinho vazio</h2>
-
                             <p>Entre em um comércio e adicione produtos.</p>
-
                         </main>
-
                     </div>
 
                     <div id="overlayPerfil"></div>
+
                     <div id="perfil">
-
                         <header id="headerPerfil">
-
                             <div class="infoPerfil">
-
                                 <div class="dadosPerfil">
                                     <span class="nomePerfil">Meu Perfil</span>
                                 </div>
-
                             </div>
 
                             <button id="fecharPerfil">
                                 <i class="fa-solid fa-xmark"></i>
                             </button>
-
                         </header>
 
                         <main class="mainPerfil">
-
                             <section class="cardUsuario">
                                 <div class="avatarUsuario">
                                     <span id="inicialUsuario"></span>
@@ -174,7 +136,6 @@
                             </section>
 
                             <section class="resumoConta">
-
                                 <div class="cardResumo">
                                     <strong id="totalPedidos">0</strong>
                                     <span>Pedidos</span>
@@ -189,11 +150,9 @@
                                     <strong id="totalCartoes">0</strong>
                                     <span>Cartões</span>
                                 </div>
-
                             </section>
 
                             <section class="menuPerfil">
-
                                 <div class="itemPerfil">
                                     <span>Meus Pedidos</span>
                                     <i class="fa-solid fa-chevron-right"></i>
@@ -223,23 +182,16 @@
                                     <span>Dados da Conta</span>
                                     <i class="fa-solid fa-chevron-right"></i>
                                 </div>
-
                             </section>
 
                             <button class="btnSair">
                                 Sair da conta
                             </button>
-
                         </main>
-
                     </div>
 
-
-
                     <div id="dadosConta">
-
                         <header id="headerDadosConta">
-
                             <button id="voltarPerfil">
                                 <i class="fa-solid fa-arrow-left"></i>
                             </button>
@@ -249,15 +201,12 @@
                             <button id="fecharDadosConta">
                                 <i class="fa-solid fa-xmark"></i>
                             </button>
-
                         </header>
 
                         <main class="mainDadosConta">
-
                             <section class="cardPerfilConta">
                                 <div class="avatarContainer">
-                                    <div class="avatar" id="avatarConta">
-                                    </div>
+                                    <div class="avatar" id="avatarConta"></div>
 
                                     <button class="btnFoto">
                                         <i class="fa-solid fa-plus"></i>
@@ -269,7 +218,6 @@
                             </section>
 
                             <section class="cardInformacoes">
-
                                 <div class="linhaInfo">
                                     <span>NOME</span>
                                     <strong id="nomeInformacao"></strong>
@@ -289,36 +237,76 @@
                                     <span>MEMBRO DESDE</span>
                                     <strong id="membroDesde"></strong>
                                 </div>
-
                             </section>
 
-                            <button class="botaoConta">
+                            <button class="botaoConta botaoContaEditarDados">
                                 Editar dados
                             </button>
 
-                            <button class="botaoConta">
+                            <div class="botoesEdicao">
+                                <button class="botaoContaSalvarDados">
+                                    Salvar
+                                </button>
+
+                                <button class="botaoContaCancelarEdicao">
+                                    Cancelar
+                                </button>
+                            </div>
+
+                            <button type="button" class="botaoConta botaoContaAlterarSenha">
                                 Alterar senha
                             </button>
+
+                            <div class="formAlterarSenha" id="formAlterarSenha">
+                                <div class="campoSenha">
+                                    <label for="senhaAtual">Senha atual</label>
+                                    <input type="password" id="senhaAtual" placeholder="Digite sua senha atual">
+
+                                    <button type="button" class="mostrarSenha" data-input="senhaAtual" aria-label="Mostrar senha">
+                                        <i class="fa-solid fa-eye"></i>
+                                    </button>
+                                </div>
+
+                                <div class="campoSenha">
+                                    <label for="novaSenha">Nova senha</label>
+                                    <input type="password" id="novaSenha" placeholder="Digite sua nova senha">
+
+                                    <button type="button" class="mostrarSenha" data-input="novaSenha" aria-label="Mostrar senha">
+                                        <i class="fa-solid fa-eye"></i>
+                                    </button>
+                                </div>
+
+                                <div class="campoSenha">
+                                    <label for="confirmarSenha">Confirmar nova senha</label>
+                                    <input type="password" id="confirmarSenha" placeholder="Confirme sua nova senha">
+
+                                    <button type="button" class="mostrarSenha" data-input="confirmarSenha" aria-label="Mostrar senha">
+                                        <i class="fa-solid fa-eye"></i>
+                                    </button>
+                                </div>
+
+                                <div class="botoesSenha">
+                                    <button type="button" class="botaoSalvarSenha" id="salvarSenha">
+                                        Salvar
+                                    </button>
+
+                                    <button type="button" class="botaoCancelarSenha" id="cancelarSenha">
+                                        Cancelar
+                                    </button>
+                                </div>
+                            </div>
 
                             <button class="botaoContaExcluir">
                                 Excluir minha conta
                             </button>
-
                         </main>
-
                     </div>
-
-
                 </div>
-
             </section>
-
         </section>
-
     </header>
 
     <main>
-
         <div class="pesquisaMobile">
             <form class="pesquisa">
                 <i class="fa-solid fa-magnifying-glass"></i>
@@ -327,7 +315,6 @@
         </div>
 
         <section class="comerciosProximos">
-
             <h1>Comércios mais próximos de você</h1>
 
             <div class="localizacao">
@@ -345,33 +332,21 @@
             </div>
 
             <div id="listaComercios">
-
-                <!-- Os cards serão adicionados aqui futuramente -->
-
                 <div class="semComercios">
-
                     <i class="fa-solid fa-store"></i>
-
                     <h3>Nenhum comércio disponível</h3>
 
                     <p>
                         Quando algum comércio parceiro cadastrar produtos
                         no sistema, ele aparecerá aqui.
                     </p>
-
                 </div>
-
             </div>
-
         </section>
-
     </main>
 
     <footer>
-
-
     </footer>
-
 </body>
 
 </html>

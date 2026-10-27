@@ -63,8 +63,6 @@ exports.atualizar = (id, usuario, callback) => {
 
 };
 
-
-
 exports.excluir = (id, callback) => {
 
     const sql = `
@@ -115,6 +113,25 @@ exports.buscarPorId = (id, callback) => {
     });
 };
 
+exports.buscarPorIdComSenha = (id, callback) => {
+
+    const sql = `
+        SELECT  id, senha
+        FROM tbl_usuarios
+        WHERE id = ?
+        `;
+
+    conexao.query(sql, [id], (erro, resultado) => {
+
+        if (erro) {
+            console.error("ERRO AO BUSCAR USUÁRIO: ", erro);
+            return callback(null);
+        }
+
+        callback(resultado[0]);
+    });
+};
+
 exports.alterarSenha = (email, senha, callback) => {
 
     const sql = `
@@ -135,6 +152,31 @@ exports.alterarSenha = (email, senha, callback) => {
 
         console.log("E-MAIL:", email);
         console.log("RESULTADO UPDATE:", resultado);
+
+        callback(resultado);
+    });
+};
+
+exports.alterarSenhaLogado = (id, senha, callback) => {
+
+    const sql = `
+        UPDATE tbl_usuarios
+        SET senha = ?
+        WHERE id = ?
+    `;
+
+    conexao.query(sql, [senha, id], (erro, resultado) => {
+
+        if (erro) {
+            console.error("ERRO AO ALTERAR SENHA DO USUÁRIO LOGADO:", erro);
+
+            return callback({
+                erro: "Erro ao alterar senha"
+            });
+        }
+
+        console.log("ID DO USUÁRIO:", id);
+        console.log("RESULTADO UPDATE SENHA:", resultado);
 
         callback(resultado);
     });

@@ -111,6 +111,18 @@ exports.login = (email, senha, callback) => {
 
 };
 
+exports.buscarPorId = (idUsuario, callback) => {
+
+    usuarioRepositorio.buscarPorId(
+        idUsuario,
+        (resultado) => {
+
+            callback(resultado);
+
+        }
+    );
+};
+
 exports.alterarSenha = async (email, senha, callback) => {
 
     usuarioRepositorio.buscarPorEmail(email, async (usuario) => {
@@ -145,13 +157,48 @@ exports.alterarSenha = async (email, senha, callback) => {
     });
 };
 
-exports.buscarPorId = (id, callback) => {
+exports.alterarSenhaLogado = async (idUsuario, senhaAtual, novaSenha, callback) => {
 
-    usuarioRepositorio.buscarPorId(id, (resultado) => {
+    usuarioRepositorio.buscarPorIdComSenha(idUsuario, async (usuario) => {
 
-        callback(resultado);
+        if (!usuario) {
+            return callback({
+                erro: "Usuário não encontrado"
+            });
+        }
 
-    });
+        try {
+            const senhaCorreta = await bcrypt.compare(senhaAtual, usuario.senha);
 
+            if (!senhaCorreta) {
+                return callback({
+                    erro: "Senha atual incorreta"
+                });
+            }
+
+            const novaSenhaHash = await bcrypt.hash(
+                novaSenha, 10
+            );
+
+            usuarioRepositorio.alterarSenhaLogado(
+                idUsuario,
+                novaSenhaHash,
+                (resultado) => {
+                    callback(resultado);
+                }
+            );
+        }
+        catch (erro) {
+
+            console.error(
+                "ERRO AO ALTERAR SENHA",
+                erro
+            );
+            callback({
+                erro: "Erro ao alterar senha"
+            });
+        }
+    }
+    );
 };
 

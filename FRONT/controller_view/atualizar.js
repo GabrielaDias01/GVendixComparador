@@ -1,19 +1,13 @@
 const btnEditar = document.querySelector(".botaoContaEditarDados");
-
 const btnSalvar = document.querySelector(".botaoContaSalvarDados");
-
 const btnCancelar = document.querySelector(".botaoContaCancelarEdicao");
 
 const btnEditarDados = document.querySelector(".botaoContaEditarDados");
-
 const btnExcluirConta = document.querySelector(".botaoContaExcluir");
-
 const btnAlterarSenha = document.querySelector(".botaoContaAlterarSenha");
 
 const nomeInformacao = document.querySelector("#nomeInformacao");
-
 const emailInformacao = document.querySelector("#emailInformacao");
-
 const telefoneInformacao = document.querySelector("#telefoneInformacao");
 
 const botoesEdicao = document.querySelector(".botoesEdicao");
@@ -54,8 +48,54 @@ btnEditar.addEventListener("click", function () {
             type="text"
             id="inputTelefone"
             value="${telefoneOriginal}"
+            maxlength="15"
+            placeholder="(11) 99999-9999"
         >
     `;
+
+    const inputTelefone = document.querySelector("#inputTelefone");
+
+
+    // MÁSCARA DO TELEFONE
+
+    inputTelefone.addEventListener("input", function () {
+
+        let telefone = inputTelefone.value.replace(/\D/g, "");
+
+        telefone = telefone.substring(0, 11);
+
+        if (telefone.length <= 2) {
+
+            telefone = telefone.replace(
+                /^(\d{0,2})/,
+                "($1"
+            );
+
+        } else if (telefone.length <= 6) {
+
+            telefone = telefone.replace(
+                /^(\d{2})(\d{0,4})/,
+                "($1) $2"
+            );
+
+        } else {
+
+            telefone = telefone.replace(
+                /^(\d{2})(\d{5})(\d{0,4})/,
+                "($1) $2-$3"
+            );
+
+        }
+
+        inputTelefone.value = telefone;
+
+    });
+
+
+    // APLICA A MÁSCARA NO TELEFONE QUE JÁ ESTAVA SALVO
+
+    inputTelefone.dispatchEvent(new Event("input"));
+
 
     btnEditarDados.style.display = "none";
 
@@ -128,7 +168,12 @@ btnSalvar.addEventListener("click", async function () {
 
     const novoEmail = inputEmail.value.trim();
 
-    const novoTelefone = inputTelefone.value.trim();
+    // REMOVE A MÁSCARA ANTES DE ENVIAR
+
+    const novoTelefone = inputTelefone.value
+        .replace(/\D/g, "")
+        .trim();
+
 
     if (novoNome === "") {
 
@@ -140,6 +185,7 @@ btnSalvar.addEventListener("click", async function () {
 
     }
 
+
     if (novoEmail === "") {
 
         alert("Digite seu e-mail.");
@@ -150,6 +196,7 @@ btnSalvar.addEventListener("click", async function () {
 
     }
 
+
     if (novoTelefone === "") {
 
         alert("Digite seu telefone.");
@@ -159,6 +206,18 @@ btnSalvar.addEventListener("click", async function () {
         return;
 
     }
+
+
+    if (novoTelefone.length !== 11) {
+
+        alert("Digite um telefone válido com 11 números.");
+
+        inputTelefone.focus();
+
+        return;
+
+    }
+
 
     try {
 
@@ -190,17 +249,26 @@ btnSalvar.addEventListener("click", async function () {
 
         }
 
+
+        // FORMATA O TELEFONE PARA MOSTRAR NA TELA
+
+        const telefoneFormatado = novoTelefone.replace(
+            /^(\d{2})(\d{5})(\d{4})$/,
+            "($1) $2-$3"
+        );
+
+
         nomeInformacao.textContent = novoNome;
 
         emailInformacao.textContent = novoEmail;
 
-        telefoneInformacao.textContent = novoTelefone;
+        telefoneInformacao.textContent = telefoneFormatado;
 
         nomeOriginal = novoNome;
 
         emailOriginal = novoEmail;
 
-        telefoneOriginal = novoTelefone;
+        telefoneOriginal = telefoneFormatado;
 
 
         // ATUALIZA USUÁRIO SALVO
@@ -208,6 +276,9 @@ btnSalvar.addEventListener("click", async function () {
         usuarioAtual.nome = novoNome;
 
         usuarioAtual.email = novoEmail;
+
+        usuarioAtual.telefone = novoTelefone;
+
 
         if (localStorage.getItem("usuario")) {
 
@@ -240,11 +311,13 @@ btnSalvar.addEventListener("click", async function () {
 
         const avatarConta = document.querySelector("#avatarConta");
 
+
         if (nomeConta) {
 
             nomeConta.textContent = novoNome;
 
         }
+
 
         if (emailConta) {
 
@@ -252,11 +325,13 @@ btnSalvar.addEventListener("click", async function () {
 
         }
 
+
         if (nomeUsuario) {
 
             nomeUsuario.textContent = novoNome;
 
         }
+
 
         if (emailUsuario) {
 
@@ -264,12 +339,14 @@ btnSalvar.addEventListener("click", async function () {
 
         }
 
+
         if (inicialUsuario && novoNome.length > 0) {
 
             inicialUsuario.textContent =
                 novoNome.charAt(0).toUpperCase();
 
         }
+
 
         if (avatarConta && novoNome.length > 0) {
 

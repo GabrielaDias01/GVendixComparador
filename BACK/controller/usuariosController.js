@@ -50,18 +50,18 @@ exports.excluir = (req, res) => {
 };
 
 
-exports.login = (req,res)=>{
+exports.login = (req, res) => {
 
-    const {email, senha} = req.body;
+    const { email, senha } = req.body;
 
     model.login(
 
         email,
         senha,
 
-        (resultado)=>{
+        (resultado) => {
 
-            if(resultado.erro){
+            if (resultado.erro) {
 
                 return res.status(401).json(resultado);
 
@@ -116,4 +116,29 @@ exports.alterarSenha = (req, res) => {
         });
 
     });
+};
+
+exports.alterarSenhaLogado = (req, res) => {
+
+    const id = req.usuario.id;
+
+    const { senhaAtual, novaSenha } = req.body;
+
+    if (!senhaAtual || !novaSenha) {
+        return res.status(400).json({
+            erro: "A senha atual e a nova senha são obrigatórias"
+        });
+    }
+
+    model.alterarSenhaLogado(id, senhaAtual, novaSenha, (resultado) => {
+
+        if (resultado.erro) {
+            return res.status(400).json(resultado);
+        }
+
+        res.status(200).json({
+            mensagem: "Senha alterada com sucesso"
+        });
+    }
+    );
 };

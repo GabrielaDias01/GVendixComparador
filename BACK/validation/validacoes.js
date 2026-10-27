@@ -31,5 +31,8 @@ function usuarioValidacoes(req, res, next) {
             erro: "A senha é obrigatória!"
         });
     }
+
     next();
 }
+
+module.exports = usuarioValidacoes;
