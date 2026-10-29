@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
@@ -15,12 +15,21 @@
 
     <script src="../js/mudarTema.js" defer></script>
     <script src="../js/carrinho.js" defer></script>
+
+    <!-- API ViaCEP: preenche os campos do endereço -->
+    <script src="../js/api_endereco.js" defer></script>
+
+    <!-- Controller-view dos endereços: cadastrar, listar e excluir -->
+    <script src="../../controller_view/enderecoControllerView.js" defer></script>
+
+    <!-- Demais funcionalidades do perfil -->
     <script src="../../controller_view/perfil.js" defer></script>
     <script src="../js/perfilFront.js" defer></script>
     <script src="../../controller_view/atualizar.js" defer></script>
     <script src="../../controller_view/excluir.js" defer></script>
     <script src="../../controller_view/auth.js" defer></script>
     <script src="../../controller_view/alterarSenha.js" defer></script>
+
 </head>
 
 <body>
@@ -28,11 +37,13 @@
         <section class="nav">
             <section class="section">
                 <div class="iconedecompra">
-                    <img id="iconeDeCompra" src="../imagens/iconLimpoBranco.png" width="40" height="40" alt="Ícone laranja">
+                    <img id="iconeDeCompra" src="../imagens/iconLimpoBranco.png" width="40" height="40"
+                        alt="Ícone laranja">
                 </div>
 
                 <div class="logo">
-                    <img id="logoTransparente" src="../imagens/GVendix_preta_transparente.png" width="185" height="110" alt="Logo GVendix">
+                    <img id="logoTransparente" src="../imagens/GVendix_preta_transparente.png" width="185" height="110"
+                        alt="Logo GVendix">
                 </div>
             </section>
 
@@ -163,23 +174,13 @@
                                     <i class="fa-solid fa-chevron-right"></i>
                                 </div>
 
-                                <div class="itemPerfil">
+                                <a class="itemPerfil" href="#painel-enderecos" id="abrirEnderecos">
                                     <span>Endereços Salvos</span>
-                                    <i class="fa-solid fa-chevron-right"></i>
-                                </div>
+                                    <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+                                </a>
 
                                 <div class="itemPerfil">
                                     <span>Meus Cartões</span>
-                                    <i class="fa-solid fa-chevron-right"></i>
-                                </div>
-
-                                <div class="itemPerfil">
-                                    <span>Notificações</span>
-                                    <i class="fa-solid fa-chevron-right"></i>
-                                </div>
-
-                                <div class="itemPerfil">
-                                    <span>Dados da Conta</span>
                                     <i class="fa-solid fa-chevron-right"></i>
                                 </div>
                             </section>
@@ -239,7 +240,7 @@
                                 </div>
                             </section>
 
-                            <button class="botaoConta botaoContaEditarDados">
+                            <button class="botaoContaEditarDados">
                                 Editar dados
                             </button>
 
@@ -253,34 +254,41 @@
                                 </button>
                             </div>
 
-                            <button type="button" class="botaoConta botaoContaAlterarSenha">
+                            <button type="button" class="botaoContaAlterarSenha">
                                 Alterar senha
                             </button>
 
                             <div class="formAlterarSenha" id="formAlterarSenha">
                                 <div class="campoSenha">
                                     <label for="senhaAtual">Senha atual</label>
+
                                     <input type="password" id="senhaAtual" placeholder="Digite sua senha atual">
 
-                                    <button type="button" class="mostrarSenha" data-input="senhaAtual" aria-label="Mostrar senha">
+                                    <button type="button" class="mostrarSenha" data-input="senhaAtual"
+                                        aria-label="Mostrar senha">
                                         <i class="fa-solid fa-eye"></i>
                                     </button>
                                 </div>
 
                                 <div class="campoSenha">
                                     <label for="novaSenha">Nova senha</label>
+
                                     <input type="password" id="novaSenha" placeholder="Digite sua nova senha">
 
-                                    <button type="button" class="mostrarSenha" data-input="novaSenha" aria-label="Mostrar senha">
+                                    <button type="button" class="mostrarSenha" data-input="novaSenha"
+                                        aria-label="Mostrar senha">
                                         <i class="fa-solid fa-eye"></i>
                                     </button>
                                 </div>
 
                                 <div class="campoSenha">
                                     <label for="confirmarSenha">Confirmar nova senha</label>
-                                    <input type="password" id="confirmarSenha" placeholder="Confirme sua nova senha">
 
-                                    <button type="button" class="mostrarSenha" data-input="confirmarSenha" aria-label="Mostrar senha">
+                                    <input type="password" id="confirmarSenha"
+                                        placeholder="Confirme sua nova senha">
+
+                                    <button type="button" class="mostrarSenha" data-input="confirmarSenha"
+                                        aria-label="Mostrar senha">
                                         <i class="fa-solid fa-eye"></i>
                                     </button>
                                 </div>
@@ -301,6 +309,85 @@
                             </button>
                         </main>
                     </div>
+
+                    <div class="painel-enderecos" id="painel-enderecos">
+                        <header class="cabecalho">
+                            <button id="voltarEnderecos" type="button">
+                                <i class="fa-solid fa-arrow-left"></i>
+                            </button>
+
+                            <span>Endereços Salvos</span>
+
+                            <button id="fecharEnderecos" type="button">
+                                <i class="fa-solid fa-xmark"></i>
+                            </button>
+                        </header>
+
+                        <main class="conteudo">
+                            <section class="listaEnderecos" id="listaEnderecos">
+                                <button type="button" class="adicionarNovoEndereco" id="adicionarNovoEndereco"
+                                    aria-expanded="false" aria-controls="formularioEndereco">
+                                    + Adicionar endereço
+                                </button>
+                            </section>
+
+                            <section class="formularioEndereco" id="formularioEndereco">
+                                <h2>Novo endereço</h2>
+
+                                <form id="formEndereco">
+                                    <div class="campo">
+                                        <label for="apelido">APELIDO (EX.: CASA)</label>
+                                        <input type="text" id="apelido" placeholder="Casa, Trabalho..." required>
+                                    </div>
+
+                                    <div class="campo">
+                                        <label for="cep">CEP</label>
+                                        <input type="text" id="cep" placeholder="00000-000" maxlength="9"
+                                            inputmode="numeric" required>
+                                    </div>
+
+                                    <div class="campo">
+                                        <label for="cidade">CIDADE - ESTADO</label>
+                                        <input type="text" id="cidade" placeholder="São Paulo - SP" required readonly>
+                                    </div>
+
+                                    <div class="campo">
+                                        <label for="bairro">BAIRRO</label>
+                                        <input type="text" id="bairro" placeholder="Bairro" required readonly>
+                                    </div>
+
+                                    <div class="campo">
+                                        <label for="rua">RUA / AVENIDA</label>
+                                        <input type="text" id="rua" placeholder="Rua das Flores" required readonly>
+                                    </div>
+
+                                    <div class="doisCampos">
+                                        <div class="campo">
+                                            <label for="numero">NÚMERO</label>
+                                            <input type="text" id="numero" placeholder="142" required>
+                                        </div>
+
+                                        <div class="campo">
+                                            <label for="complemento">COMPLEMENTO</label>
+                                            <input type="text" id="complemento"
+                                                placeholder="Apartamento, bloco...">
+                                        </div>
+                                    </div>
+
+                                    <div class="botoesFormulario">
+                                        <button type="button" class="botaoCancelarEndereco" id="cancelarEndereco">
+                                            Cancelar
+                                        </button>
+
+                                        <button type="submit" class="botaoSalvarEndereco" id="salvarEndereco">
+                                            Salvar
+                                        </button>
+                                    </div>
+                                </form>
+                            </section>
+                        </main>
+                    </div>
+
                 </div>
             </section>
         </section>

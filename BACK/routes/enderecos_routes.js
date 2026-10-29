@@ -9,7 +9,16 @@ router.get("/teste", (req, res) => {
 });
 
 router.get("/", authMiddleware, enderecosController.listar);
+
 router.post("/", authMiddleware, enderecosController.salvar);
+
+// Definir endereço principal
+router.patch(
+    "/:id/principal",
+    authMiddleware,
+    enderecosController.definirPrincipal
+);
+
 router.delete("/:id", authMiddleware, enderecosController.excluir);
 
 module.exports = router;

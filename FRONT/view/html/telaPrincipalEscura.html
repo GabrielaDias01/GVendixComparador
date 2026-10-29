@@ -158,14 +158,7 @@
                                     <span>Meus Cartões</span>
                                     <i class="fa-solid fa-chevron-right"></i>
                                 </div>
-                                <div class="itemPerfil">
-                                    <span>Notificações</span>
-                                    <i class="fa-solid fa-chevron-right"></i>
-                                </div>
-                                <div class="itemPerfil">
-                                    <span>Dados da Conta</span>
-                                    <i class="fa-solid fa-chevron-right"></i>
-                                </div>
+
                             </section>
                             <button class="btnSair">
                                 Sair da conta
@@ -324,7 +317,8 @@
 
                                     <div class="campo">
                                         <label for="cep">CEP</label>
-                                        <input type="text" id="cep" placeholder="00000-000" maxlength="9" required>
+                                        <input type="text" id="cep" placeholder="00000-000" maxlength="9"
+                                            inputmode="numeric" required>
                                     </div>
 
                                     <div class="campo">
@@ -394,14 +388,49 @@
                 </div>
             </div>
             <div id="listaComercios">
-                <!-- Os cards serão adicionados aqui futuramente -->
-                <div class="semComercios">
-                    <i class="fa-solid fa-store"></i>
-                    <h3>Nenhum comércio disponível</h3>
-                    <p>
-                        Quando algum comércio parceiro cadastrar produtos
-                        no sistema, ele aparecerá aqui.
-                    </p>
+                <div id="listaComercios">
+
+                    <article class="cardComercio">
+
+                        <div class="imagemComercio">
+
+                            <img src="../imagens/imagemMercado.jpg" alt="Fachada do mercado">
+
+                            <button class="favorito" type="button">
+                                <i class="fa-solid fa-heart"></i>
+                            </button>
+
+                            <div class="informacoesComercio">
+                                <span class="categoriaComercio">SUPERMERCADO</span>
+                                <h2 class="nomeComercio">Supermercado Central</h2>
+                            </div>
+                        </div>
+
+                        <div class="detalhesComercio">
+
+                            <div class="avaliacaoComercio">
+                                <i class="fa-solid fa-star"></i>
+                                <span>4.8</span>
+                            </div>
+
+                            <div class="distancia">
+                                <i class="fa-solid fa-location-dot"></i>
+                                <span>2,8 km</span>
+                            </div>
+
+                            <!-- Adicionado também o ícone de tempo/entrega similar à imagem -->
+                            <div class="tempoEntrega">
+                                <i class="fa-solid fa-clock"></i>
+                                <span>35-50 min</span>
+                            </div>
+
+                        </div>
+                    </article>
+
+                    <article class="cardComercio">
+                        <!-- Informações do segundo mercado -->
+                    </article>
+
                 </div>
             </div>
         </section>

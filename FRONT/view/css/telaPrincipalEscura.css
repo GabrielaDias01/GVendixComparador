@@ -1445,7 +1445,169 @@ body {
 }
 
 
+/* =========================
+ESTILIZAÇÃO DOS CONTEÚDOS DA MAIN
+========================= */
+.cardComercio {
+    width: 100%;
+    border: 1px solid #E0E0E0;
+    border-radius: 18px;
+    overflow: hidden;
+    background-color: #FFFFFF;
+    margin-bottom: 16px;
+}
 
+.imagemComercio {
+    position: relative;
+    height: 180px;
+    overflow: hidden;
+}
+
+.imagemComercio img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Gradiente opcional para destacar o texto branco em cima da imagem */
+.informacoesComercio {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 12px;
+    color: #FFFFFF;
+    background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 100%);
+}
+
+.categoriaComercio {
+    display: block;
+    font-size: 10px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.nomeComercio {
+    font-size: 16px;
+    font-weight: 700;
+    margin: 0;
+}
+
+.favorito {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 36px;
+    height: 36px;
+    border: none;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.4);
+    color: #FFFFFF;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s;
+}
+
+.favorito:hover {
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+/* Rodapé do card com as informações alinhadas */
+.detalhesComercio {
+    display: flex;
+    align-items: center;
+    gap: 16px; /* Espaçamento uniforme entre os itens */
+    padding: 14px 16px;
+    font-size: 13px;
+    color: #666666;
+}
+
+/* Estilo padrão para blocos internos de detalhes (Avaliação, Distância, Tempo) */
+.detalhesComercio > div {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.avaliacaoComercio {
+    color: #222222;
+    font-weight: 600;
+}
+
+.avaliacaoComercio i {
+    color: #FF7A00; /* Cor da estrela */
+}
+
+/* Cor dos ícones de localização e relógio */
+.distancia i, 
+.tempoEntrega i {
+    color: #888888;
+}
+
+/* Joga o elemento de preço/frete totalmente para a direita do card */
+.precoFrete {
+    margin-left: auto;
+    font-weight: 600;
+    color: #444444;
+}
+
+/* Caso queira estilizar a tag de "Frete grátis" igual à imagem */
+.tagFreteGratis {
+    margin-left: auto;
+    background-color: #FFF2E8;
+    color: #FF7A00;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.botaoPrincipal {
+    align-self: center;
+    flex-shrink: 0;
+    padding: 8px 10px;
+    border: 1px solid rgba(255, 122, 0, .55);
+    border-radius: 9px;
+    background: transparent;
+    color: #FF9B42;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: .25s ease;
+}
+
+.botaoPrincipal:hover:not(:disabled) {
+    background: #FF7A00;
+    color: #fff;
+}
+
+.botaoPrincipal:disabled {
+    background: rgba(255, 122, 0, .12);
+    color: #FF9B42;
+    border-color: rgba(255, 122, 0, .35);
+    cursor: default;
+    opacity: 1;
+}
+
+.botoesEndereco {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 12px;
+}
+
+.botoesEndereco .botaoPrincipal {
+    flex: 1;
+}
+
+.botoesEndereco button {
+    cursor: pointer;
+}
 /* =========================
    TABLETS E TELAS MENORES
 ========================= */

@@ -6,12 +6,28 @@ const enderecoRepositorio = require("../repositories/enderecoRepositories");
 ========================================== */
 
 exports.cadastroEndereco = (endereco, callback) => {
-    enderecoRepositorio.salvar(endereco, (erro, resultado) => {
+    enderecoRepositorio.buscarEnderecoDuplicado(endereco, (erro, enderecoExistente) => {
         if (erro) {
             return callback(erro, null);
         }
 
-        callback(null, resultado);
+        if (enderecoExistente) {
+            const erroDuplicado = new Error(
+                "Este endereço já está cadastrado na sua conta."
+            );
+
+            erroDuplicado.codigo = "ENDERECO_DUPLICADO";
+
+            return callback(erroDuplicado, null);
+        }
+
+        enderecoRepositorio.salvar(endereco, (erro, resultado) => {
+            if (erro) {
+                return callback(erro, null);
+            }
+
+            return callback(null, resultado);
+        });
     });
 };
 
@@ -27,6 +43,29 @@ exports.listarEnderecos = (idUsuario, callback) => {
 
         callback(null, resultado);
     });
+};
+
+/* ==========================================
+   DEFINIR ENDEREÇO PRINCIPAL
+========================================== */
+
+exports.definirPrincipal = (idEndereco, idUsuario, callback) => {
+    enderecoRepositorio.definirPrincipal(
+        idEndereco,
+        idUsuario,
+        (erro, resultado) => {
+
+            if(erro){
+                return callback(erro, null);
+            }
+
+            if(!resultado){
+                return callback(null, null);
+            }
+
+            callback(null, resultado);
+        }
+    );
 };
 
 /* ==========================================
